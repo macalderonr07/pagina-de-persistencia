@@ -1,0 +1,14 @@
+{
+  "name": "hangar-kits",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PWA academica de catalogo de model kits (offline-first)",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/tailwind.css -o ./assets/styles.css --minify",
+    "watch:css": "tailwindcss -i ./assets/tailwind.css -o ./assets/styles.css --watch",
+    "serve": "python3 -m http.server 8080"
+  },
+  "devDependencies": {
+    "tailwindcss": "3.4.17"
+  }
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Producto — Hangar Kits</title>
+  <meta name="description" content="Ficha de model kit: escala, línea, dificultad, stock y precio. Funciona sin conexión.">
+  <meta name="theme-color" content="#0F1E3D">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <!-- type="module": ES6+ con import/export; se ejecuta diferido y en modo estricto. -->
+  <script type="module" src="js/producto.js"></script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 antialiased">
+  <!-- WCAG 2.4.1: saltar bloques repetidos -->
+  <a href="#contenido" class="sr-only-focusable fixed left-4 top-4 z-50 rounded-lg bg-yellow-400 px-4 py-3 font-bold text-navy-950">Saltar al contenido principal</a>
+
+  <header class="sticky top-0 z-40 bg-navy-900 text-white shadow-lg">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
+      <a href="index.html" class="flex items-center gap-2 rounded-lg text-lg font-extrabold tracking-tight sm:text-xl">
+        <img src="assets/icons/icon.svg" alt="" width="36" height="36" class="h-9 w-9">
+        <span>Hangar <span class="text-yellow-400">Kits</span><span class="sr-only">, ir al inicio</span></span>
+      </a>
+
+      <button type="button" id="boton-menu" class="btn ml-auto border-2 border-white/70 px-3 text-white hover:bg-navy-800 md:hidden"
+              aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span> Menú
+      </button>
+
+      <nav id="menu-principal" aria-label="Principal" class="order-last hidden w-full md:order-none md:ml-6 md:block md:w-auto">
+        <ul class="flex flex-col gap-1 md:flex-row md:gap-1" role="list">
+          <li><a href="index.html" class="block min-h-tap rounded-lg px-3 py-2.5 font-medium hover:bg-navy-800">Inicio</a></li>
+          <li><a href="catalogo.html" class="block min-h-tap rounded-lg px-3 py-2.5 font-medium hover:bg-navy-800">Catálogo</a></li>
+          <li><a href="index.html#contacto" class="block min-h-tap rounded-lg px-3 py-2.5 font-medium hover:bg-navy-800">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-2 md:ml-auto">
+        <button type="button" id="boton-instalar" class="btn border-2 border-yellow-400 text-yellow-300 hover:bg-navy-800" hidden>
+          Instalar app
+        </button>
+        <button type="button" id="boton-carrito" class="btn-acento" aria-haspopup="dialog" aria-controls="dialogo-carrito">
+          <span aria-hidden="true">🛒</span>
+          <span class="sr-only sm:not-sr-only">Carrito</span>
+          <span id="contador-carrito" class="chip bg-navy-900 text-white">0</span>
+          <span class="sr-only" id="contador-carrito-texto">, 0 unidades</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Estado de conexión: role="status" lo anuncia sin robar el foco (WCAG 4.1.3). -->
+    <div id="estado-red" role="status" class="border-t border-navy-700">
+      <p id="estado-red-texto" class="mx-auto max-w-7xl px-4 py-1.5 text-sm text-slate-200">Comprobando conexión…</p>
+    </div>
+  </header>
+
+  <div id="aviso-actualizacion" class="bg-blue-700 text-white" hidden>
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-2">
+      <p class="font-medium">Hay una versión nueva de la tienda lista para usar.</p>
+      <button type="button" id="boton-actualizar" class="btn-acento">Actualizar ahora</button>
+    </div>
+  </div>
+
+  <main id="contenido" tabindex="-1" class="focus:outline-none">
+    <div class="mx-auto max-w-7xl px-4 pt-6">
+      <nav aria-label="Ruta de navegación" class="text-sm text-slate-700">
+        <ol class="flex flex-wrap items-center gap-2" role="list">
+          <li><a href="index.html" class="underline underline-offset-2 hover:text-blue-800">Inicio</a></li>
+          <li class="flex items-center gap-2"><span aria-hidden="true">›</span><a id="miga-categoria" href="catalogo.html" class="underline underline-offset-2 hover:text-blue-800">Catálogo</a></li>
+          <li class="flex items-center gap-2"><span aria-hidden="true">›</span><span id="miga-actual" aria-current="page" class="font-semibold text-slate-900">…</span></li>
+        </ol>
+      </nav>
+    </div>
+    <div id="error-catalogo" role="alert" class="mx-auto mt-8 max-w-7xl rounded-2xl border-2 border-red-700 bg-red-50 p-6 text-red-900" hidden></div>
+
+    <div id="no-encontrado" class="mx-auto mt-8 max-w-3xl rounded-2xl border-2 border-dashed border-slate-300 p-8 text-center" hidden>
+      <h1 class="text-2xl font-extrabold text-navy-900">No encontramos ese kit</h1>
+      <p class="mt-2 text-slate-700">Puede que el enlace esté mal escrito o que el producto ya no esté en el catálogo.</p>
+      <a href="catalogo.html" class="btn-primario mt-4">Ir al catálogo</a>
+    </div>
+
+    <article id="ficha" aria-labelledby="ficha-nombre" class="mx-auto max-w-7xl px-4 py-8" hidden>
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
+        <figure class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <img id="ficha-img" width="800" height="600" class="aspect-[4/3] w-full object-cover" alt="" fetchpriority="high">
+          <figcaption id="ficha-credito" class="px-4 py-2 text-sm text-slate-700"></figcaption>
+        </figure>
+
+        <div>
+          <p id="ficha-nuevo" class="chip bg-red-700 text-white" hidden></p>
+          <p id="ficha-marca" class="mt-3 text-sm font-semibold uppercase tracking-wide text-blue-800"></p>
+          <h1 id="ficha-nombre" tabindex="-1" class="mt-1 text-3xl font-extrabold leading-tight text-navy-900 md:text-4xl"></h1>
+          <p id="ficha-franquicia" class="mt-2 text-slate-700"></p>
+          <p id="ficha-precio" class="mt-4 text-4xl font-extrabold text-navy-900"></p>
+          <!-- tabindex="-1": recibe el foco si el botón se deshabilita tras agregar. -->
+          <p id="ficha-stock" tabindex="-1" class="mt-1 font-semibold" aria-live="polite"></p>
+
+          <form id="form-compra" class="mt-6 flex flex-wrap items-end gap-3" novalidate>
+            <div>
+              <label for="ficha-cantidad" class="etiqueta">Cantidad</label>
+              <input id="ficha-cantidad" name="cantidad" type="number" min="1" value="1" inputmode="numeric"
+                     class="campo w-24 text-center" aria-describedby="ficha-cantidad-error">
+            </div>
+            <button type="submit" id="ficha-agregar" class="btn-acento text-lg">Agregar al carrito</button>
+            <p id="ficha-cantidad-error" class="error-campo w-full" hidden></p>
+          </form>
+
+          <h2 class="mt-8 text-xl font-bold text-navy-900">Descripción</h2>
+          <p id="ficha-descripcion" class="mt-2 max-w-prose text-slate-800"></p>
+
+          <h2 class="mt-8 text-xl font-bold text-navy-900">Especificaciones</h2>
+          <dl id="ficha-especificaciones" class="mt-3 grid grid-cols-[auto_minmax(0,1fr)] gap-x-6 gap-y-2 rounded-xl border border-slate-200 bg-white p-4"></dl>
+        </div>
+      </div>
+    </article>
+
+    <section id="relacionados" aria-labelledby="titulo-relacionados" class="border-t border-slate-200 bg-white" hidden>
+      <div class="mx-auto max-w-7xl px-4 py-10">
+        <h2 id="titulo-relacionados" class="text-2xl font-extrabold text-navy-900">También te puede interesar</h2>
+        <ul id="lista-relacionados" role="list" class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-navy-950 text-slate-200">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-2">
+      <div>
+        <p class="text-lg font-bold text-white">Hangar <span class="text-yellow-400">Kits</span></p>
+        <p class="mt-2 max-w-prose text-sm">
+          Proyecto académico de Desarrollo Web: PWA con HTML5 semántico, Tailwind CSS, Grid y JavaScript ES6+.
+          Tienda ficticia; precios referenciales. Las marcas y franquicias pertenecen a sus dueños.
+        </p>
+        <p class="mt-2 text-sm">Última visita: <span id="ultima-visita">primera visita</span></p>
+        <!-- Control de privacidad: el usuario puede borrar todo lo que la tienda guardó
+             en su navegador (carrito, filtros, contacto, pedidos, cookies). -->
+        <div class="mt-4">
+          <button type="button" id="boton-borrar-todo" class="btn border-2 border-slate-300 text-white hover:bg-navy-800" aria-describedby="ayuda-borrar-todo">
+            Borrar mis datos de este dispositivo
+          </button>
+          <p id="ayuda-borrar-todo" class="mt-1 text-sm text-slate-300">Vacía carrito, filtros, datos de contacto, pedidos y cookies. El catálogo se vuelve a descargar.</p>
+          <p id="confirmar-borrado" class="mt-3 rounded-lg border-2 border-red-300 bg-red-50 p-3 text-red-900" hidden>
+            ¿Seguro? Esta acción no se puede deshacer.
+            <button type="button" id="boton-confirmar-borrado" class="btn ml-2 bg-red-700 text-white hover:bg-red-800">Sí, borrar todo</button>
+            <button type="button" id="boton-cancelar-borrado" class="btn-secundario ml-2">Cancelar</button>
+          </p>
+        </div>
+      </div>
+      <details class="h-fit rounded-xl bg-navy-900 p-4">
+        <summary class="min-h-tap cursor-pointer py-2 font-semibold text-white">Créditos de las fotografías</summary>
+        <p class="mt-2 text-sm">Fotos de kits reales armados por sus autores, publicadas con licencias Creative Commons.</p>
+        <ul id="lista-creditos" class="mt-3 space-y-2 text-sm" role="list"></ul>
+      </details>
+    </div>
+  </footer>
+
+  <!-- ===================== CARRITO (diálogo modal) ===================== -->
+  <!-- <dialog> con showModal(): el navegador confina el foco, Esc cierra y el resto
+       de la página queda inerte. Es la opción del estándar frente a un modal hecho a mano. -->
+  <dialog id="dialogo-carrito" aria-labelledby="titulo-carrito"
+          class="m-0 ml-auto h-full max-h-full w-full max-w-md bg-white p-0 text-slate-900 shadow-2xl">
+    <div class="flex h-full flex-col">
+      <div class="flex items-center justify-between bg-navy-900 px-5 py-4 text-white">
+        <h2 id="titulo-carrito" class="text-xl font-bold">Tu carrito</h2>
+        <button type="button" id="boton-cerrar-carrito" class="btn-icono border-white/60 bg-transparent text-white hover:bg-navy-800" aria-label="Cerrar carrito">✕</button>
+      </div>
+      <div class="flex-1 overflow-y-auto px-5 py-4">
+        <p id="carrito-vacio" class="text-slate-700">Tu carrito está vacío.</p>
+        <ul id="lista-carrito" class="divide-y divide-slate-200" role="list"></ul>
+        <div id="pedido-confirmado" role="status" class="mt-4 rounded-xl border-2 border-green-700 bg-green-50 p-4 text-green-900" hidden></div>
+      </div>
+      <div class="border-t border-slate-200 px-5 py-4">
+        <p class="flex justify-between text-lg font-bold"><span>Total</span><span id="carrito-total">$0.00</span></p>
+        <p class="ayuda">El carrito se guarda en tu dispositivo; los pedidos también, aunque no tengas conexión.</p>
+        <div class="mt-3 grid grid-cols-2 gap-3">
+          <button type="button" id="boton-vaciar-carrito" class="btn-peligro">Vaciar</button>
+          <button type="button" id="boton-confirmar-pedido" class="btn-primario">Confirmar pedido</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Plantilla de tarjeta de producto (se clona en view.js; los datos se insertan con
+       textContent, nunca con innerHTML, para evitar XSS desde el JSON).
+       "Enlace estirado": el ::after del enlace del título cubre toda la tarjeta, así
+       se puede hacer clic en cualquier parte, pero para el teclado y el lector de
+       pantalla hay UN solo enlace por tarjeta. El botón queda por encima (z-10). -->
+  <template id="tpl-producto">
+    <li class="producto">
+      <article class="relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md" data-contenedor>
+        <figure class="relative bg-slate-200" data-figura>
+          <img data-img width="800" height="600" loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" alt="">
+          <span data-escala class="chip absolute left-3 top-3 bg-yellow-400 text-navy-950"></span>
+          <span data-nuevo class="chip absolute right-3 top-3 bg-red-700 text-white" hidden>Nuevo</span>
+          <figcaption data-credito class="px-3 py-1 text-xs text-slate-700"></figcaption>
+        </figure>
+        <div class="flex flex-1 flex-col p-4">
+          <p data-marca class="text-sm font-semibold uppercase tracking-wide text-blue-800"></p>
+          <h3 data-nombre class="mt-1 text-lg font-bold leading-snug text-navy-900">
+            <a data-enlace class="underline-offset-2 after:absolute after:inset-0 after:content-[''] hover:underline"></a>
+          </h3>
+          <p data-franquicia class="mt-1 text-sm text-slate-700"></p>
+          <p data-descripcion class="mt-2 text-sm text-slate-700"></p>
+          <dl class="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-sm">
+            <dt class="text-slate-600">Línea</dt><dd data-linea class="font-medium"></dd>
+            <dt class="text-slate-600">Dificultad</dt><dd data-dificultad class="font-medium"></dd>
+            <dt class="text-slate-600">Stock</dt><dd data-stock class="font-medium"></dd>
+          </dl>
+          <div class="mt-auto flex items-center justify-between gap-3 pt-4">
+            <p data-precio class="text-2xl font-extrabold text-navy-900"></p>
+            <button type="button" data-agregar class="btn-primario relative z-10"></button>
+          </div>
+        </div>
+      </article>
+    </li>
+  </template>
+
+  <!-- Región de anuncios para lectores de pantalla (acciones como "agregado al carrito"). -->
+  <div id="anuncios" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <noscript>
+    <p class="bg-yellow-300 p-4 text-center font-semibold text-navy-950">
+      Esta tienda necesita JavaScript para mostrar el catálogo y funcionar sin conexión.
+    </p>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,227 @@
+/* Fuente de Tailwind. NO editar assets/styles.css a mano: se regenera con
+   `npm run build:css` a partir de este archivo. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* WCAG 2.4.11 (Foco no oculto): el header es sticky, así que al saltar a un
+       ancla o tabular hacia arriba el elemento enfocado no debe quedar debajo. */
+    scroll-padding-top: 7.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+  }
+
+  /* Foco de dos tonos (amarillo + anillo marino): visible tanto sobre fondos claros
+     como sobre el header oscuro. Cumple 2.4.7 y el contraste 3:1 de 1.4.11. */
+  :focus-visible {
+    outline: 3px solid #facc15;
+    outline-offset: 0;
+    box-shadow: 0 0 0 6px #0f1e3d;
+    border-radius: 0.375rem;
+  }
+
+  [hidden] { display: none !important; }
+
+  /* El texto de campos inválidos usa además un icono y texto, nunca solo color (1.4.1). */
+  [aria-invalid="true"] {
+    border-color: #b91c1c !important;
+    box-shadow: inset 0 0 0 1px #b91c1c;
+  }
+
+  dialog::backdrop { background: rgb(10 21 48 / 0.65); }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-tap items-center justify-center gap-2 rounded-lg px-4 py-2 font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-primario {
+    @apply btn bg-blue-700 text-white hover:bg-blue-800;
+  }
+  .btn-secundario {
+    @apply btn border-2 border-blue-700 bg-white text-blue-800 hover:bg-blue-50;
+  }
+  .btn-acento {
+    @apply btn bg-yellow-400 text-navy-950 hover:bg-yellow-300;
+  }
+  .btn-peligro {
+    @apply btn border-2 border-red-700 bg-white text-red-800 hover:bg-red-50;
+  }
+  .btn-icono {
+    @apply inline-flex min-h-tap min-w-tap items-center justify-center rounded-lg border-2 border-slate-400 bg-white text-lg font-bold text-slate-900 hover:bg-slate-100;
+  }
+  .campo {
+    @apply mt-1 block w-full min-h-tap rounded-lg border-2 border-slate-400 bg-white px-3 py-2 text-slate-900 placeholder:text-slate-500;
+  }
+  .etiqueta {
+    @apply block font-semibold text-slate-900;
+  }
+  .ayuda {
+    @apply mt-1 text-sm text-slate-600;
+  }
+  .error-campo {
+    @apply mt-1 text-sm font-semibold text-red-800;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .sr-only-focusable:not(:focus) {
+    @apply sr-only;
+  }
+
+  /* ============ Portada: categorías en barras diagonales ============
+     Cada barra es un <li> inclinado con skewX(); el enlace interior se inclina al
+     revés (contra-inclinación) para que la foto y el texto queden derechos.
+     El enlace es más ancho que la barra (left/right negativos) para cubrir los
+     triángulos que deja la inclinación; overflow:hidden recorta el sobrante.
+     En móvil las barras se apilan y la diagonal se hace con clip-path. */
+  .barras {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+  }
+  .barra {
+    position: relative;
+    height: 9.5rem;
+    overflow: hidden;
+    background: #0a1530;
+    clip-path: polygon(0 1.25rem, 100% 0, 100% calc(100% - 1.25rem), 0 100%);
+  }
+  .barra + .barra { margin-top: -0.75rem; }
+  .barra-enlace {
+    position: absolute;
+    inset: 0;
+    display: block;
+    color: #fff;
+  }
+  .barra-enlace:focus-visible {
+    /* El contorno del enlace quedaría recortado por overflow/clip-path: el foco
+       se dibuja en el bloque de texto, que siempre está dentro (WCAG 2.4.7). */
+    outline: none;
+    box-shadow: none;
+  }
+  .barra-enlace:focus-visible .barra-texto {
+    outline: 3px solid #facc15;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 7px #0f1e3d;
+  }
+  .barra-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* Degradado oscuro bajo el texto: garantiza contraste AA del texto blanco
+     sobre cualquier foto (WCAG 1.4.3). */
+  .barra-enlace::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgb(10 21 48 / 0.92) 0%, rgb(10 21 48 / 0.75) 45%, rgb(10 21 48 / 0.15) 100%);
+  }
+  .barra-texto {
+    position: absolute;
+    z-index: 1;
+    left: 1.25rem;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    border-radius: 0.375rem;
+  }
+  .barra-subtitulo { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #fde047; }
+  .barra-nombre { font-size: 1.375rem; font-weight: 800; line-height: 1.15; }
+  .barra-descripcion { display: none; font-size: 0.875rem; color: #e2e8f0; }
+  .barra-total { margin-top: 0.25rem; font-size: 0.875rem; font-weight: 600; }
+
+  @media (min-width: 768px) {
+    .barras {
+      flex-direction: row;
+      gap: 0.75rem;
+      height: 30rem;
+      padding-inline: 3.5rem; /* margen para las puntas inclinadas de la primera y la última */
+    }
+    .barra {
+      flex: 1 1 0;
+      min-width: 0;
+      height: auto;
+      clip-path: none;
+      border-radius: 0.75rem;
+      transform: skewX(-12deg);
+    }
+    .barra + .barra { margin-top: 0; }
+    .barra-enlace {
+      /* 30rem · tan(12°) ≈ 6.4rem de desplazamiento entre arriba y abajo. */
+      left: -4rem;
+      right: -4rem;
+      transform: skewX(12deg);
+    }
+    .barra-enlace::after {
+      background: linear-gradient(0deg, rgb(10 21 48 / 0.95) 0%, rgb(10 21 48 / 0.7) 40%, rgb(10 21 48 / 0) 75%);
+    }
+    .barra-texto {
+      top: auto;
+      bottom: 1.5rem;
+      transform: none;
+      /* El enlace sobresale 4rem por cada lado y, por la inclinación, la parte de
+         abajo de la barra está corrida ~3.2rem a la izquierda (15rem · tan 12°).
+         Estos márgenes dejan el texto siempre dentro de la parte visible. */
+      left: 3.5rem;
+      right: 8rem;
+    }
+    .barra-nombre { font-size: 1.25rem; }
+    /* Hover y foco ensanchan la barra y muestran la descripción (patrón "acordeón"). */
+    .barra:hover, .barra:focus-within { flex-grow: 2.6; }
+    .barra:hover .barra-descripcion, .barra:focus-within .barra-descripcion { display: block; }
+  }
+  @media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+    .barra { transition: flex-grow 0.45s ease; }
+    .barra-img { transition: transform 0.6s ease; }
+    .barra:hover .barra-img, .barra:focus-within .barra-img { transform: scale(1.06); }
+  }
+
+  /* ============ Carrusel de novedades ============
+     Todas las diapositivas ocupan la misma celda del grid: el alto del carrusel es
+     el de la más alta y no "salta" al cambiar. visibility:hidden + inert (en JS)
+     sacan las ocultas del foco y del árbol de accesibilidad. */
+  .carrusel-pista { display: grid; }
+  .carrusel-diapositiva {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .carrusel-diapositiva.activa { opacity: 1; visibility: visible; }
+  @media (prefers-reduced-motion: no-preference) {
+    .carrusel-diapositiva { transition: opacity 0.6s ease, visibility 0.6s ease; }
+  }
+  /* Punto de 44×44 px de objetivo táctil (WCAG 2.5.8) con un círculo visible más pequeño. */
+  .carrusel-punto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    border-radius: 9999px;
+  }
+  .carrusel-punto::before {
+    content: "";
+    width: 0.875rem;
+    height: 0.875rem;
+    border-radius: 9999px;
+    border: 2px solid #fff;
+  }
+  /* La activa se distingue por relleno Y tamaño, no solo por color (WCAG 1.4.1). */
+  .carrusel-punto[aria-current="true"]::before {
+    width: 1.75rem;
+    background: #facc15;
+    border-color: #facc15;
+  }
+}

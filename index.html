@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hangar Kits — Tienda de model kits (Gunpla, Tamiya, Zoids y más)</title>
+  <meta name="description" content="Tienda progresiva de model kits: novedades de Gunpla High Grade, Master Grade, Tamiya y más. Funciona sin conexión. Proyecto académico.">
+  <meta name="theme-color" content="#0F1E3D">
+  <meta name="color-scheme" content="light">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <!-- type="module": ES6+ con import/export; se ejecuta diferido y en modo estricto. -->
+  <script type="module" src="js/inicio.js"></script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900 antialiased">
+  <!-- WCAG 2.4.1: saltar bloques repetidos -->
+  <a href="#contenido" class="sr-only-focusable fixed left-4 top-4 z-50 rounded-lg bg-yellow-400 px-4 py-3 font-bold text-navy-950">Saltar al contenido principal</a>
+
+  <header class="sticky top-0 z-40 bg-navy-900 text-white shadow-lg">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
+      <a href="index.html" class="flex items-center gap-2 rounded-lg text-lg font-extrabold tracking-tight sm:text-xl">
+        <img src="assets/icons/icon.svg" alt="" width="36" height="36" class="h-9 w-9">
+        <span>Hangar <span class="text-yellow-400">Kits</span><span class="sr-only">, ir al inicio</span></span>
+      </a>
+
+      <button type="button" id="boton-menu" class="btn ml-auto border-2 border-white/70 px-3 text-white hover:bg-navy-800 md:hidden"
+              aria-expanded="false" aria-controls="menu-principal">
+        <span aria-hidden="true">☰</span> Menú
+      </button>
+
+      <nav id="menu-principal" aria-label="Principal" class="order-last hidden w-full md:order-none md:ml-6 md:block md:w-auto">
+        <ul class="flex flex-col gap-1 md:flex-row md:gap-1" role="list">
+          <li><a href="index.html" aria-current="page" class="block min-h-tap rounded-lg px-3 py-2.5 font-medium hover:bg-navy-800 bg-navy-800 underline decoration-yellow-400 decoration-2 underline-offset-4">Inicio</a></li>
+          <li><a href="catalogo.html" class="block min-h-tap rounded-lg px-3 py-2.5 font-medium hover:bg-navy-800">Catálogo</a></li>
+          <li><a href="index.html#contacto" class="block min-h-tap rounded-lg px-3 py-2.5 font-medium hover:bg-navy-800">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="flex items-center gap-2 md:ml-auto">
+        <button type="button" id="boton-instalar" class="btn border-2 border-yellow-400 text-yellow-300 hover:bg-navy-800" hidden>
+          Instalar app
+        </button>
+        <button type="button" id="boton-carrito" class="btn-acento" aria-haspopup="dialog" aria-controls="dialogo-carrito">
+          <span aria-hidden="true">🛒</span>
+          <span class="sr-only sm:not-sr-only">Carrito</span>
+          <span id="contador-carrito" class="chip bg-navy-900 text-white">0</span>
+          <span class="sr-only" id="contador-carrito-texto">, 0 unidades</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Estado de conexión: role="status" lo anuncia sin robar el foco (WCAG 4.1.3). -->
+    <div id="estado-red" role="status" class="border-t border-navy-700">
+      <p id="estado-red-texto" class="mx-auto max-w-7xl px-4 py-1.5 text-sm text-slate-200">Comprobando conexión…</p>
+    </div>
+  </header>
+
+  <div id="aviso-actualizacion" class="bg-blue-700 text-white" hidden>
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-2">
+      <p class="font-medium">Hay una versión nueva de la tienda lista para usar.</p>
+      <button type="button" id="boton-actualizar" class="btn-acento">Actualizar ahora</button>
+    </div>
+  </div>
+
+  <main id="contenido" tabindex="-1" class="focus:outline-none">
+    <h1 class="sr-only">Hangar Kits, tienda de model kits</h1>
+
+    <!-- ===================== NOVEDADES (carrusel) ===================== -->
+    <!-- Patrón Carousel de las WAI-ARIA APG: región con nombre, diapositivas como
+         grupos "1 de N", botón de pausa primero y selector de diapositivas. -->
+    <section id="novedades" aria-roledescription="carrusel" aria-labelledby="titulo-novedades" class="bg-navy-950 text-white">
+      <div class="mx-auto max-w-7xl px-4 pb-6 pt-8">
+        <div class="flex flex-wrap items-end justify-between gap-3">
+          <h2 id="titulo-novedades" class="text-3xl font-extrabold">Novedades</h2>
+          <a href="catalogo.html?orden=recientes" class="font-semibold text-yellow-300 underline underline-offset-4 hover:text-yellow-200">Ver todas las novedades</a>
+        </div>
+        <div class="mt-4 overflow-hidden rounded-2xl border-4 border-yellow-400 bg-navy-900">
+          <div data-pista class="carrusel-pista" aria-live="off">
+            <p class="p-10 text-slate-200">Cargando novedades…</p>
+          </div>
+        </div>
+        <div class="mt-3 flex flex-wrap items-center justify-center gap-2">
+          <button type="button" data-pausa class="btn border-2 border-white/70 text-white hover:bg-navy-800">
+            <span data-icono aria-hidden="true">❚❚</span> <span data-texto>Pausar</span>
+          </button>
+          <button type="button" data-anterior class="btn-icono border-white/70 bg-transparent text-white hover:bg-navy-800" aria-label="Novedad anterior">‹</button>
+          <div data-puntos role="group" aria-label="Elegir novedad" class="flex flex-wrap items-center"></div>
+          <button type="button" data-siguiente class="btn-icono border-white/70 bg-transparent text-white hover:bg-navy-800" aria-label="Novedad siguiente">›</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="error-catalogo" role="alert" class="mx-auto mt-8 max-w-7xl rounded-2xl border-2 border-red-700 bg-red-50 p-6 text-red-900" hidden></div>
+
+    <!-- Resumen rápido de la tienda -->
+    <section aria-label="La tienda en números" class="border-b border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-4 py-6">
+        <dl class="grid grid-cols-3 gap-4 text-center sm:gap-8">
+          <div><dt class="text-sm text-slate-600">Kits</dt><dd id="dato-kits" class="text-3xl font-extrabold text-navy-900">—</dd></div>
+          <div><dt class="text-sm text-slate-600">De Gundam</dt><dd id="dato-gundam" class="text-3xl font-extrabold text-navy-900">—</dd></div>
+          <div><dt class="text-sm text-slate-600">High Grade</dt><dd id="dato-hg" class="text-3xl font-extrabold text-navy-900">—</dd></div>
+        </dl>
+        <a href="catalogo.html" class="btn-primario text-lg">Ver catálogo completo</a>
+      </div>
+    </section>
+
+    <!-- ===================== CATEGORÍAS (barras diagonales) ===================== -->
+    <section id="categorias" aria-labelledby="titulo-categorias" class="py-12">
+      <div class="mx-auto max-w-7xl px-4">
+        <h2 id="titulo-categorias" class="text-3xl font-extrabold text-navy-900">Explora por categoría</h2>
+        <p class="mt-2 max-w-prose text-slate-700">Elige una línea y te llevamos al catálogo filtrado. Pasa el puntero o el foco por una barra para ver de qué se trata.</p>
+      </div>
+      <!-- Cada barra es un enlace a catalogo.html?categoria=… (ver view.js). -->
+      <ul id="barras-categorias" class="barras mx-auto mt-8 max-w-7xl" role="list"></ul>
+    </section>
+
+    <!-- ===================== CONTACTO ===================== -->
+    <section id="contacto" aria-labelledby="titulo-contacto" class="mx-auto max-w-7xl px-4 py-12">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
+        <div>
+          <h2 id="titulo-contacto" class="text-3xl font-extrabold text-navy-900">Contacto y consultas</h2>
+          <p class="mt-2 max-w-prose text-slate-700">
+            ¿Buscas un kit que no está en el catálogo? Escríbenos. Si no tienes conexión, el mensaje queda
+            en la bandeja de salida de tu dispositivo y se envía al reconectar.
+          </p>
+          <p class="mt-2 text-sm text-slate-600">Los campos marcados con <span aria-hidden="true">*</span><span class="sr-only">asterisco</span> son obligatorios.</p>
+
+          <div id="resumen-errores" class="mt-4 rounded-xl border-2 border-red-700 bg-red-50 p-4 text-red-900" tabindex="-1" hidden>
+            <h3 class="font-bold">Revisa estos campos:</h3>
+            <ul id="lista-errores" class="mt-2 list-disc pl-5"></ul>
+          </div>
+
+          <form id="form-contacto" class="mt-6 grid gap-5 sm:grid-cols-2" novalidate>
+            <fieldset class="contents">
+              <legend class="sr-only">Datos para responderte</legend>
+              <div>
+                <label for="c-email" class="etiqueta">Correo electrónico <span aria-hidden="true">*</span></label>
+                <input id="c-email" name="email" type="email" class="campo" autocomplete="email" required
+                       aria-describedby="c-email-ayuda c-email-error" inputmode="email" spellcheck="false">
+                <p id="c-email-ayuda" class="ayuda">Se guarda en este dispositivo (localStorage).</p>
+                <p id="c-email-error" class="error-campo" hidden></p>
+              </div>
+              <div>
+                <label for="c-telefono" class="etiqueta">Teléfono <span aria-hidden="true">*</span></label>
+                <input id="c-telefono" name="telefono" type="tel" class="campo" autocomplete="tel" required
+                       aria-describedby="c-telefono-ayuda c-telefono-error" inputmode="tel" placeholder="+593 99 123 4567">
+                <p id="c-telefono-ayuda" class="ayuda">De 7 a 15 dígitos; puedes usar +, espacios o guiones. Se guarda en localStorage.</p>
+                <p id="c-telefono-error" class="error-campo" hidden></p>
+              </div>
+            </fieldset>
+
+            <fieldset class="contents">
+              <legend class="sr-only">Datos personales (solo durante esta sesión)</legend>
+              <div>
+                <label for="c-nombre" class="etiqueta">Nombre completo <span aria-hidden="true">*</span></label>
+                <input id="c-nombre" name="nombre" type="text" class="campo" autocomplete="name" required
+                       aria-describedby="c-nombre-error" maxlength="80">
+                <p id="c-nombre-error" class="error-campo" hidden></p>
+              </div>
+              <div>
+                <label for="c-documento" class="etiqueta">Cédula o documento <span class="font-normal text-slate-600">(opcional)</span></label>
+                <input id="c-documento" name="documento" type="text" class="campo" autocomplete="off" inputmode="numeric"
+                       aria-describedby="c-documento-ayuda c-documento-error" maxlength="20">
+                <p id="c-documento-ayuda" class="ayuda">Solo para facturar. Se guarda en sessionStorage y se borra al cerrar la pestaña.</p>
+                <p id="c-documento-error" class="error-campo" hidden></p>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="c-direccion" class="etiqueta">Dirección de envío <span class="font-normal text-slate-600">(opcional)</span></label>
+                <input id="c-direccion" name="direccion" type="text" class="campo" autocomplete="street-address" maxlength="160"
+                       aria-describedby="c-direccion-ayuda">
+                <p id="c-direccion-ayuda" class="ayuda">Se guarda solo durante esta sesión (sessionStorage).</p>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="c-mensaje" class="etiqueta">Mensaje <span aria-hidden="true">*</span></label>
+                <textarea id="c-mensaje" name="mensaje" rows="5" class="campo" required maxlength="1000"
+                          aria-describedby="c-mensaje-ayuda c-mensaje-error"></textarea>
+                <p id="c-mensaje-ayuda" class="ayuda"><span id="c-mensaje-contador">0</span> de 1000 caracteres.</p>
+                <p id="c-mensaje-error" class="error-campo" hidden></p>
+              </div>
+            </fieldset>
+
+            <div class="sm:col-span-2">
+              <label class="inline-flex min-h-tap cursor-pointer items-center gap-3">
+                <input type="checkbox" id="c-recordar" name="recordar" class="h-5 w-5 accent-blue-700" checked>
+                <span>Recordar mi correo y teléfono en este dispositivo</span>
+              </label>
+            </div>
+
+            <div class="flex flex-wrap gap-3 sm:col-span-2">
+              <button type="submit" class="btn-primario">Enviar consulta</button>
+              <button type="button" id="boton-borrar-contacto" class="btn-peligro">Borrar mis datos del formulario</button>
+            </div>
+            <p id="estado-contacto" role="status" class="sm:col-span-2 font-semibold text-green-800"></p>
+          </form>
+        </div>
+
+        <aside aria-labelledby="titulo-tienda" class="h-fit rounded-2xl bg-navy-900 p-6 text-white">
+          <h3 id="titulo-tienda" class="text-xl font-bold text-yellow-400">La tienda</h3>
+          <address class="mt-3 space-y-2 not-italic text-slate-200">
+            <p>Hangar Kits (tienda ficticia, proyecto académico)</p>
+            <p>Horario: lunes a sábado, 10:00–19:00</p>
+            <p>Correo: <span class="font-semibold text-white">hola@hangarkits.example</span></p>
+          </address>
+          <h4 class="mt-6 font-bold text-yellow-400">Bandeja de salida</h4>
+          <p id="bandeja-resumen" class="mt-1 text-slate-200" aria-live="polite">Sin mensajes pendientes.</p>
+        </aside>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer class="bg-navy-950 text-slate-200">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-10 md:grid-cols-2">
+      <div>
+        <p class="text-lg font-bold text-white">Hangar <span class="text-yellow-400">Kits</span></p>
+        <p class="mt-2 max-w-prose text-sm">
+          Proyecto académico de Desarrollo Web: PWA con HTML5 semántico, Tailwind CSS, Grid y JavaScript ES6+.
+          Tienda ficticia; precios referenciales. Las marcas y franquicias pertenecen a sus dueños.
+        </p>
+        <p class="mt-2 text-sm">Última visita: <span id="ultima-visita">primera visita</span></p>
+        <!-- Control de privacidad: el usuario puede borrar todo lo que la tienda guardó
+             en su navegador (carrito, filtros, contacto, pedidos, cookies). -->
+        <div class="mt-4">
+          <button type="button" id="boton-borrar-todo" class="btn border-2 border-slate-300 text-white hover:bg-navy-800" aria-describedby="ayuda-borrar-todo">
+            Borrar mis datos de este dispositivo
+          </button>
+          <p id="ayuda-borrar-todo" class="mt-1 text-sm text-slate-300">Vacía carrito, filtros, datos de contacto, pedidos y cookies. El catálogo se vuelve a descargar.</p>
+          <p id="confirmar-borrado" class="mt-3 rounded-lg border-2 border-red-300 bg-red-50 p-3 text-red-900" hidden>
+            ¿Seguro? Esta acción no se puede deshacer.
+            <button type="button" id="boton-confirmar-borrado" class="btn ml-2 bg-red-700 text-white hover:bg-red-800">Sí, borrar todo</button>
+            <button type="button" id="boton-cancelar-borrado" class="btn-secundario ml-2">Cancelar</button>
+          </p>
+        </div>
+      </div>
+      <details class="h-fit rounded-xl bg-navy-900 p-4">
+        <summary class="min-h-tap cursor-pointer py-2 font-semibold text-white">Créditos de las fotografías</summary>
+        <p class="mt-2 text-sm">Fotos de kits reales armados por sus autores, publicadas con licencias Creative Commons.</p>
+        <ul id="lista-creditos" class="mt-3 space-y-2 text-sm" role="list"></ul>
+      </details>
+    </div>
+  </footer>
+
+  <!-- ===================== CARRITO (diálogo modal) ===================== -->
+  <!-- <dialog> con showModal(): el navegador confina el foco, Esc cierra y el resto
+       de la página queda inerte. Es la opción del estándar frente a un modal hecho a mano. -->
+  <dialog id="dialogo-carrito" aria-labelledby="titulo-carrito"
+          class="m-0 ml-auto h-full max-h-full w-full max-w-md bg-white p-0 text-slate-900 shadow-2xl">
+    <div class="flex h-full flex-col">
+      <div class="flex items-center justify-between bg-navy-900 px-5 py-4 text-white">
+        <h2 id="titulo-carrito" class="text-xl font-bold">Tu carrito</h2>
+        <button type="button" id="boton-cerrar-carrito" class="btn-icono border-white/60 bg-transparent text-white hover:bg-navy-800" aria-label="Cerrar carrito">✕</button>
+      </div>
+      <div class="flex-1 overflow-y-auto px-5 py-4">
+        <p id="carrito-vacio" class="text-slate-700">Tu carrito está vacío.</p>
+        <ul id="lista-carrito" class="divide-y divide-slate-200" role="list"></ul>
+        <div id="pedido-confirmado" role="status" class="mt-4 rounded-xl border-2 border-green-700 bg-green-50 p-4 text-green-900" hidden></div>
+      </div>
+      <div class="border-t border-slate-200 px-5 py-4">
+        <p class="flex justify-between text-lg font-bold"><span>Total</span><span id="carrito-total">$0.00</span></p>
+        <p class="ayuda">El carrito se guarda en tu dispositivo; los pedidos también, aunque no tengas conexión.</p>
+        <div class="mt-3 grid grid-cols-2 gap-3">
+          <button type="button" id="boton-vaciar-carrito" class="btn-peligro">Vaciar</button>
+          <button type="button" id="boton-confirmar-pedido" class="btn-primario">Confirmar pedido</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Región de anuncios para lectores de pantalla (acciones como "agregado al carrito"). -->
+  <div id="anuncios" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <noscript>
+    <p class="bg-yellow-300 p-4 text-center font-semibold text-navy-950">
+      Esta tienda necesita JavaScript para mostrar el catálogo y funcionar sin conexión.
+    </p>
+  </noscript>
+</body>
+</html>
