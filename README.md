@@ -28,10 +28,22 @@ imágenes, filtros, carrito, pedidos y formulario.
 | `catalogo.html` | Catálogo con filtros (categoría, marca, franquicia, escala, texto), orden y vista cuadrícula/lista. Los filtros se leen de la URL (`?categoria=high-grade&orden=precio-asc`) y se reflejan en ella con `history.replaceState`, así el enlace se puede compartir |
 | `producto.html?id=…` | Ficha del kit: **galería de al menos 3 fotos**, precio, stock, cantidad, especificaciones, migas de pan y productos relacionados (misma categoría, luego misma franquicia) |
 
-**Carrusel** (patrón *Carousel* de las WAI-ARIA APG): botón Pausar/Reanudar primero en el orden de
-tabulación (WCAG 2.2.2), anterior/siguiente y un punto por diapositiva con `aria-current`. Rota cada 6 s;
-se detiene si el foco entra al carrusel, se pausa mientras el ratón está encima y arranca pausado con
-`prefers-reduced-motion`. Las diapositivas ocultas llevan `inert`.
+**Carrusel** (patrón *Carousel* de las WAI-ARIA APG), animado con **Tailwind**: las animaciones están
+definidas en `tailwind.config.js` (`keyframes`/`animation`) y se aplican con clases como
+`motion-safe:group-[.activa]:animate-kenburns`:
+- foto a pantalla completa con zoom lento (*Ken Burns*), degradado para el contraste del texto y número grande decorativo;
+- textos que entran escalonados (`animate-entrar` + `[animation-delay:…]`) cada vez que cambia la diapositiva;
+- selector con miniaturas y **barra de progreso** (`animate-progreso`, 6 s). El fin de esa animación
+  (`animationend`) es lo que avanza el carrusel: pausar = `animation-play-state: paused` vía la clase
+  `pausado` y la variante `group-[.pausado]/carrusel:`, sin `setInterval`.
+
+Accesibilidad: botón Pausar/Reanudar primero entre los controles (WCAG 2.2.2; también detiene el zoom,
+el aro "Nuevo" y el destello del botón), rotación que se detiene si el foco entra al carrusel, pausa
+temporal con el ratón encima, `prefers-reduced-motion` (arranca pausado y sin zoom ni entradas),
+`aria-live` solo en pausa, diapositivas ocultas con `inert` y miniatura activa con `aria-current`.
+
+**Categorías**: cada una tiene en el JSON una foto con el kit centrado y un punto focal (`foco`, p. ej.
+`"45% 40%"`) que se aplica como `object-position`, porque la barra solo deja ver una franja de la foto.
 
 **Galería de la ficha**: foto grande con botones anterior/siguiente, contador "Foto n de N" (anunciado con
 `aria-live` solo cuando el usuario cambia de foto) y miniaturas como `<button aria-pressed>`. Las flechas ←/→

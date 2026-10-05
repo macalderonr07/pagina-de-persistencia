@@ -80,6 +80,18 @@ export function mostrarOrigenCatalogo(nodo, origen, meta) {
 }
 
 // ---------- Portada: categorías en barras diagonales ----------
+// Valida "foco" (punto focal de la foto) antes de usarlo en el estilo: viene del
+// JSON y solo se aceptan porcentajes, p. ej. "45% 40%".
+const FOCO_VALIDO = /^\d{1,3}% \d{1,3}%$/;
+
+function imagenCategoria(c) {
+  // alt="": la imagen es decorativa; el nombre del enlace lo da el texto.
+  const img = el("img", { clase: "barra-img", attrs: { src: c.imagen, alt: "", width: "800", height: "600", loading: "lazy", decoding: "async" } });
+  // La barra solo deja ver una franja de la foto: object-position centra el kit en ella.
+  if (FOCO_VALIDO.test(c.foco ?? "")) img.style.objectPosition = c.foco;
+  return img;
+}
+
 /**
  * Cada categoría es un ENLACE real a catalogo.html?categoria=…: funciona con
  * teclado, con clic central (pestaña nueva) y aunque falle el JavaScript de la
@@ -96,7 +108,7 @@ export function renderCategoriasDiagonales(contenedor, categorias, facetasCatego
         return el("li", { clase: "barra" }, [
           el("a", { clase: "barra-enlace", attrs: { href: urlCategoria(c.id) } }, [
             // alt="": la imagen es decorativa; el nombre del enlace lo da el texto.
-            el("img", { clase: "barra-img", attrs: { src: c.imagen, alt: "", width: "800", height: "600", loading: "lazy", decoding: "async" } }),
+            imagenCategoria(c),
             el("span", { clase: "barra-texto" }, [
               el("span", { clase: "barra-subtitulo", texto: c.subtitulo ?? "" }),
               el("span", { clase: "barra-nombre", texto: c.nombre }),

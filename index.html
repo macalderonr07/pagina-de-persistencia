@@ -69,26 +69,42 @@
 
     <!-- ===================== NOVEDADES (carrusel) ===================== -->
     <!-- Patrón Carousel de las WAI-ARIA APG: región con nombre, diapositivas como
-         grupos "1 de N", botón de pausa primero y selector de diapositivas. -->
-    <section id="novedades" aria-roledescription="carrusel" aria-labelledby="titulo-novedades" class="bg-navy-950 text-white">
-      <div class="mx-auto max-w-7xl px-4 pb-6 pt-8">
-        <div class="flex flex-wrap items-end justify-between gap-3">
-          <h2 id="titulo-novedades" class="text-3xl font-extrabold">Novedades</h2>
-          <a href="catalogo.html?orden=recientes" class="font-semibold text-yellow-300 underline underline-offset-4 hover:text-yellow-200">Ver todas las novedades</a>
-        </div>
-        <div class="mt-4 overflow-hidden rounded-2xl border-4 border-yellow-400 bg-navy-900">
+         grupos "1 de N", botón de pausa PRIMERO entre los controles y selector.
+         "group/carrusel": las animaciones de dentro se pausan con
+         group-[.pausado]/carrusel:[animation-play-state:paused] cuando carrusel.js
+         pone la clase "pausado" en esta sección. -->
+    <section id="novedades" aria-roledescription="carrusel" aria-labelledby="titulo-novedades"
+             class="group/carrusel relative isolate overflow-hidden bg-navy-950 text-white">
+      <!-- Fondo decorativo: dos resplandores difusos y franjas diagonales finas. -->
+      <div aria-hidden="true" class="pointer-events-none absolute -left-32 -top-40 -z-10 h-[28rem] w-[28rem] rounded-full bg-blue-700/40 blur-3xl"></div>
+      <div aria-hidden="true" class="pointer-events-none absolute -bottom-48 right-0 -z-10 h-[26rem] w-[26rem] rounded-full bg-yellow-400/20 blur-3xl"></div>
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-[repeating-linear-gradient(115deg,transparent_0_38px,rgb(255_255_255_/_0.035)_38px_40px)]"></div>
+
+      <div class="mx-auto max-w-7xl px-4 pb-8 pt-8 md:pt-10">
+        <p class="text-sm font-bold uppercase tracking-[0.25em] text-yellow-400">Recién llegados al hangar</p>
+        <h2 id="titulo-novedades" class="mt-1 text-4xl font-black md:text-5xl">Novedades</h2>
+
+        <div class="relative mt-6 overflow-hidden rounded-3xl shadow-2xl shadow-black/50 ring-1 ring-white/15">
+          <button type="button" data-pausa
+                  class="absolute right-4 top-4 z-20 inline-flex min-h-tap items-center gap-2 rounded-full bg-navy-950/70 px-4 font-semibold text-white ring-1 ring-white/30 backdrop-blur transition hover:bg-yellow-400 hover:text-navy-950">
+            <span data-icono aria-hidden="true">❚❚</span> <span data-texto>Pausar</span>
+          </button>
           <div data-pista class="carrusel-pista" aria-live="off">
             <p class="p-10 text-slate-200">Cargando novedades…</p>
           </div>
+          <button type="button" data-anterior aria-label="Novedad anterior"
+                  class="absolute left-3 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-navy-950/60 text-3xl leading-none text-white ring-1 ring-white/30 backdrop-blur transition hover:scale-110 hover:bg-yellow-400 hover:text-navy-950 sm:inline-flex">‹</button>
+          <button type="button" data-siguiente aria-label="Novedad siguiente"
+                  class="absolute right-3 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-navy-950/60 text-3xl leading-none text-white ring-1 ring-white/30 backdrop-blur transition hover:scale-110 hover:bg-yellow-400 hover:text-navy-950 sm:inline-flex">›</button>
         </div>
-        <div class="mt-3 flex flex-wrap items-center justify-center gap-2">
-          <button type="button" data-pausa class="btn border-2 border-white/70 text-white hover:bg-navy-800">
-            <span data-icono aria-hidden="true">❚❚</span> <span data-texto>Pausar</span>
-          </button>
-          <button type="button" data-anterior class="btn-icono border-white/70 bg-transparent text-white hover:bg-navy-800" aria-label="Novedad anterior">‹</button>
-          <div data-puntos role="group" aria-label="Elegir novedad" class="flex flex-wrap items-center"></div>
-          <button type="button" data-siguiente class="btn-icono border-white/70 bg-transparent text-white hover:bg-navy-800" aria-label="Novedad siguiente">›</button>
-        </div>
+
+        <!-- Selector: en escritorio, miniatura + nombre + barra de progreso; en móvil,
+             solo las barras (como "historias"). carrusel.js define las columnas. -->
+        <div data-puntos role="group" aria-label="Elegir novedad" class="mt-4 grid gap-2 md:gap-3"></div>
+
+        <p class="mt-4 text-right">
+          <a href="catalogo.html?orden=recientes" class="font-semibold text-yellow-300 underline underline-offset-4 hover:text-yellow-200">Ver todas las novedades →</a>
+        </p>
       </div>
     </section>
 

@@ -16,7 +16,7 @@
 // Al cambiar cualquier archivo precargado hay que subir VERSION para que los
 // clientes descarguen la nueva versión (comun.js muestra el aviso "Actualizar").
 
-const VERSION = "v2.1.0";
+const VERSION = "v2.2.0";
 const CACHE_APP = `hangar-app-${VERSION}`;
 const CACHE_DATOS = `hangar-datos-${VERSION}`;
 

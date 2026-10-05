@@ -191,7 +191,9 @@
   /* ============ Carrusel de novedades ============
      Todas las diapositivas ocupan la misma celda del grid: el alto del carrusel es
      el de la más alta y no "salta" al cambiar. visibility:hidden + inert (en JS)
-     sacan las ocultas del foco y del árbol de accesibilidad. */
+     sacan las ocultas del foco y del árbol de accesibilidad. La transición es un
+     fundido con un leve "acercamiento"; el resto de animaciones (zoom de la foto,
+     entrada de textos, barra de progreso) son clases de Tailwind en el HTML/JS. */
   .carrusel-pista { display: grid; }
   .carrusel-diapositiva {
     grid-area: 1 / 1;
@@ -200,28 +202,10 @@
   }
   .carrusel-diapositiva.activa { opacity: 1; visibility: visible; }
   @media (prefers-reduced-motion: no-preference) {
-    .carrusel-diapositiva { transition: opacity 0.6s ease, visibility 0.6s ease; }
-  }
-  /* Punto de 44×44 px de objetivo táctil (WCAG 2.5.8) con un círculo visible más pequeño. */
-  .carrusel-punto {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.75rem;
-    min-height: 2.75rem;
-    border-radius: 9999px;
-  }
-  .carrusel-punto::before {
-    content: "";
-    width: 0.875rem;
-    height: 0.875rem;
-    border-radius: 9999px;
-    border: 2px solid #fff;
-  }
-  /* La activa se distingue por relleno Y tamaño, no solo por color (WCAG 1.4.1). */
-  .carrusel-punto[aria-current="true"]::before {
-    width: 1.75rem;
-    background: #facc15;
-    border-color: #facc15;
+    .carrusel-diapositiva {
+      transform: scale(1.04);
+      transition: opacity 0.8s ease, visibility 0.8s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .carrusel-diapositiva.activa { transform: scale(1); }
   }
 }

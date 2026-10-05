@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-05c",
+  "version": "2026-10-05d",
   "moneda": "USD",
   "nota": "Precios referenciales con fines académicos.",
   "categorias": [
@@ -8,49 +8,56 @@
       "nombre": "High Grade",
       "subtitulo": "HG · HGUC · HGBF · 1/144",
       "descripcion": "La línea de entrada de Gunpla: armado a presión, buen precio y la mayor variedad de mobile suits.",
-      "imagen": "assets/img/hg-barbatos.webp"
+      "imagen": "assets/img/hg-barbatos-2.webp",
+      "foco": "45% 40%"
     },
     {
       "id": "master-grade",
       "nombre": "Master Grade",
       "subtitulo": "MG · 1/100",
       "descripcion": "Marco interno completo y más detalle para quien ya armó algunos HG.",
-      "imagen": "assets/img/mg-rx78-2-oyw.webp"
+      "imagen": "assets/img/mg-rx78-2-oyw-3.webp",
+      "foco": "50% 40%"
     },
     {
       "id": "real-perfect",
       "nombre": "Real y Perfect Grade",
       "subtitulo": "RG 1/144 · PG 1/60",
       "descripcion": "La gama alta de Bandai: máximo detalle y articulación.",
-      "imagen": "assets/img/pg-wing-zero-custom.webp"
+      "imagen": "assets/img/rg-gp01-2.webp",
+      "foco": "38% 45%"
     },
     {
       "id": "mechas",
       "nombre": "Mechas clásicos",
       "subtitulo": "Macross · Zoids",
       "descripcion": "Valkyries transformables y Zoids de Tomy.",
-      "imagen": "assets/img/zoids-liger-zero.webp"
+      "imagen": "assets/img/vf-1s-valkyrie-4.webp",
+      "foco": "50% 40%"
     },
     {
       "id": "blindados",
       "nombre": "Blindados",
       "subtitulo": "Tamiya · 1/35",
       "descripcion": "Tanques históricos y modernos en la escala militar por excelencia.",
-      "imagen": "assets/img/tamiya-jagdtiger.webp"
+      "imagen": "assets/img/tamiya-type90-3.webp",
+      "foco": "45% 55%"
     },
     {
       "id": "aviones",
       "nombre": "Aviación",
       "subtitulo": "Airfix · Revell · 1/72",
       "descripcion": "Cazas de la Segunda Guerra Mundial para empezar en el modelismo estático.",
-      "imagen": "assets/img/airfix-spitfire-mk1.webp"
+      "imagen": "assets/img/revell-p39-2.webp",
+      "foco": "45% 50%"
     },
     {
       "id": "autos",
       "nombre": "Autos",
       "subtitulo": "Tamiya · 1/24",
       "descripcion": "Clásicos de calle y prototipos de Le Mans.",
-      "imagen": "assets/img/tamiya-porsche-956.webp"
+      "imagen": "assets/img/tamiya-karmann-ghia-3.webp",
+      "foco": "50% 60%"
     }
   ],
   "productos": [
