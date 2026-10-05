@@ -16,7 +16,7 @@
 // Al cambiar cualquier archivo precargado hay que subir VERSION para que los
 // clientes descarguen la nueva versión (comun.js muestra el aviso "Actualizar").
 
-const VERSION = "v2.0.2";
+const VERSION = "v2.1.0";
 const CACHE_APP = `hangar-app-${VERSION}`;
 const CACHE_DATOS = `hangar-datos-${VERSION}`;
 
@@ -54,14 +54,14 @@ self.addEventListener("install", (evento) => {
       const app = await caches.open(CACHE_APP);
       // cache: "reload" salta la caché HTTP del navegador: se precarga la versión real del servidor.
       await app.addAll(PRECARGA.map((url) => new Request(url, { cache: "reload" })));
-      // Las imágenes se toman del propio catálogo: agregar un kit al JSON basta para
+      // Las imágenes (todas las de cada galería) se toman del propio catálogo: agregar un kit al JSON basta para
       // que su foto quede disponible offline, sin mantener una lista a mano aquí.
       const respuesta = await fetch(new Request(URL_DATOS, { cache: "reload" }));
       if (!respuesta.ok) throw new Error(`HTTP ${respuesta.status} al precargar el catálogo`);
       const datos = await respuesta.clone().json();
       await (await caches.open(CACHE_DATOS)).put(URL_DATOS, respuesta);
       const imagenes = new Set([
-        ...(datos.productos ?? []).map((p) => p.imagen),
+        ...(datos.productos ?? []).flatMap((p) => [p.imagen, ...(p.imagenes ?? []).map((i) => i?.src)]),
         ...(datos.categorias ?? []).map((c) => c.imagen),
       ].filter((ruta) => typeof ruta === "string" && ruta.startsWith("assets/img/")));
       await app.addAll([...imagenes].map((ruta) => new Request(`./${ruta}`, { cache: "reload" })));

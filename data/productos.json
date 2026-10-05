@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-05b",
+  "version": "2026-10-05c",
   "moneda": "USD",
   "nota": "Precios referenciales con fines académicos.",
   "categorias": [
@@ -75,7 +75,38 @@
       },
       "categoria": "master-grade",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/mg-rx78-2-oyw.webp",
+          "alt": "Foto del kit MG RX-78-2 Gundam Ver. One Year War 0079 armado",
+          "credito": {
+            "autor": "Polycaps",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/54132475@N02/7845310994"
+          }
+        },
+        {
+          "src": "assets/img/mg-rx78-2-oyw-2.webp",
+          "alt": "Kit MG RX-78-2 Gundam armado, de frente con escudo y rifle sobre fondo negro",
+          "credito": {
+            "autor": "Wacko Photographer",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/44214515@N06/6835561591"
+          },
+          "nota": "MG RX-78-2 armado por otro modelista"
+        },
+        {
+          "src": "assets/img/mg-rx78-2-oyw-3.webp",
+          "alt": "Kit MG RX-78-2 Gundam armado, de cuerpo entero con el escudo",
+          "credito": {
+            "autor": "Wacko Photographer",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/44214515@N06/6835562053"
+          },
+          "nota": "MG RX-78-2 armado por otro modelista"
+        }
+      ]
     },
     {
       "id": "hguc-nu-gundam",
@@ -98,7 +129,38 @@
       },
       "categoria": "high-grade",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/hguc-nu-gundam.webp",
+          "alt": "Foto del kit HGUC RX-93 ν Gundam armado",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/2671058875"
+          }
+        },
+        {
+          "src": "assets/img/hguc-nu-gundam-2.webp",
+          "alt": "Kit del ν Gundam armado, plano medio sobre fondo oscuro",
+          "credito": {
+            "autor": "tsuihin - TimoStudios",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/19136074@N06/3118122178"
+          },
+          "nota": "Mismo mobile suit, armado por otro modelista"
+        },
+        {
+          "src": "assets/img/hguc-nu-gundam-3.webp",
+          "alt": "Kit del ν Gundam armado con sus fin funnels, sobre una base de exhibición",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/15167576982"
+          },
+          "nota": "Mismo mobile suit, armado por otro modelista"
+        }
+      ]
     },
     {
       "id": "hguc-hi-nu-gundam",
@@ -121,7 +183,38 @@
       },
       "categoria": "high-grade",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/hguc-hi-nu-gundam.webp",
+          "alt": "Foto del kit HGUC RX-93-ν2 Hi-ν Gundam armado",
+          "credito": {
+            "autor": "Masaru Kamikura",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/20119192@N00/3538699100"
+          }
+        },
+        {
+          "src": "assets/img/hguc-hi-nu-gundam-2.webp",
+          "alt": "Kit del Hi-ν Gundam Vrabe armado, de cuerpo entero",
+          "nota": "Mismo mobile suit, versión Vrabe",
+          "credito": {
+            "autor": "dion [oʇoɥdʞoɯɐ]",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/79428643@N00/22064325105"
+          }
+        },
+        {
+          "src": "assets/img/hguc-hi-nu-gundam-3.webp",
+          "alt": "Kit del Hi-ν Gundam armado en una exhibición",
+          "nota": "Mismo mobile suit, armado por otro modelista",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/15144903296"
+          }
+        }
+      ]
     },
     {
       "id": "mg-zaku-ii-v2",
@@ -144,7 +237,36 @@
       },
       "categoria": "master-grade",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/mg-zaku-ii-v2.webp",
+          "alt": "Foto del kit MG MS-06F Zaku II Ver. 2.0 armado",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/1502238617"
+          }
+        },
+        {
+          "src": "assets/img/mg-zaku-ii-v2-2.webp",
+          "alt": "Kit MG Zaku II Ver. 2.0 armado, de pie junto a un reproductor de música",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/1502236689"
+          }
+        },
+        {
+          "src": "assets/img/mg-zaku-ii-v2-3.webp",
+          "alt": "Kit MG Zaku II Ver. 2.0 armado, apoyado en una laptop",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/1503093954"
+          }
+        }
+      ]
     },
     {
       "id": "hg-graze",
@@ -167,7 +289,36 @@
       },
       "categoria": "high-grade",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/hg-graze.webp",
+          "alt": "Foto del kit HG EB-06 Graze armado",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/23024569332"
+          }
+        },
+        {
+          "src": "assets/img/hg-graze-2.webp",
+          "alt": "Kit HG Graze verde armado, de cuerpo entero sobre un sofá de cuero",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/23038124525"
+          }
+        },
+        {
+          "src": "assets/img/hg-graze-3.webp",
+          "alt": "Kit HG Graze junto al Schwalbe Graze azul",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/23139669354"
+          }
+        }
+      ]
     },
     {
       "id": "hg-schwalbe-graze",
@@ -190,7 +341,36 @@
       },
       "categoria": "high-grade",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/hg-schwalbe-graze.webp",
+          "alt": "Foto del kit HG EB-05s Schwalbe Graze (McGillis) armado",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/23139671124"
+          }
+        },
+        {
+          "src": "assets/img/hg-schwalbe-graze-2.webp",
+          "alt": "Kit HG Schwalbe Graze azul armado, con su lanza",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/23399912239"
+          }
+        },
+        {
+          "src": "assets/img/hg-schwalbe-graze-3.webp",
+          "alt": "Kit HG Schwalbe Graze azul en pose de ataque",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/24850701580"
+          }
+        }
+      ]
     },
     {
       "id": "rg-gp01",
@@ -213,7 +393,36 @@
       },
       "categoria": "real-perfect",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/rg-gp01.webp",
+          "alt": "Foto del kit RG RX-78GP01 Gundam GP01 Zephyranthes armado",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/9483371361"
+          }
+        },
+        {
+          "src": "assets/img/rg-gp01-2.webp",
+          "alt": "Kit RG GP01 Zephyranthes armado en una vitrina de exhibición, de cuerpo entero",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/9483371059"
+          }
+        },
+        {
+          "src": "assets/img/rg-gp01-3.webp",
+          "alt": "Kit RG GP01 Zephyranthes armado con rifle y escudo",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/9483371227"
+          }
+        }
+      ]
     },
     {
       "id": "pg-wing-zero-custom",
@@ -236,7 +445,38 @@
       },
       "categoria": "real-perfect",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/pg-wing-zero-custom.webp",
+          "alt": "Foto del kit PG XXXG-00W0 Wing Gundam Zero Custom armado",
+          "credito": {
+            "autor": "Fernando Marcelino",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/13651330@N04/3511576169"
+          }
+        },
+        {
+          "src": "assets/img/pg-wing-zero-custom-2.webp",
+          "alt": "Wing Gundam Zero con alas desplegadas sobre fondo negro",
+          "nota": "Mismo mobile suit, armado por otro modelista",
+          "credito": {
+            "autor": "RSLab",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/134584268@N04/33018501065"
+          }
+        },
+        {
+          "src": "assets/img/pg-wing-zero-custom-3.webp",
+          "alt": "Wing Gundam Zero (Endless Waltz) armado, con alas abiertas",
+          "nota": "Mismo mobile suit, armado por otro modelista",
+          "credito": {
+            "autor": "dbgg1979",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/11538141@N08/4185682559"
+          }
+        }
+      ]
     },
     {
       "id": "mg-delta-plus",
@@ -259,7 +499,37 @@
       },
       "categoria": "master-grade",
       "nuevo": true,
-      "ingreso": "2026-09-25"
+      "ingreso": "2026-09-25",
+      "imagenes": [
+        {
+          "src": "assets/img/mg-delta-plus.webp",
+          "alt": "Foto del kit MG MSN-001A1 Delta Plus armado",
+          "credito": {
+            "autor": "Polycaps",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/54132475@N02/7688339092"
+          }
+        },
+        {
+          "src": "assets/img/mg-delta-plus-2.webp",
+          "alt": "Kit MG Delta Plus armado sobre fondo blanco, de cuerpo entero",
+          "credito": {
+            "autor": "Polycaps",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/54132475@N02/6241749366"
+          }
+        },
+        {
+          "src": "assets/img/mg-delta-plus-3.webp",
+          "alt": "Detalle del torso y la cabeza del MG Delta Plus",
+          "nota": "Detalle recortado de la foto anterior",
+          "credito": {
+            "autor": "Polycaps",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/54132475@N02/6241749366"
+          }
+        }
+      ]
     },
     {
       "id": "vf-1s-valkyrie",
@@ -282,7 +552,45 @@
       },
       "categoria": "mechas",
       "nuevo": false,
-      "ingreso": "2026-09-18"
+      "ingreso": "2026-09-18",
+      "imagenes": [
+        {
+          "src": "assets/img/vf-1s-valkyrie.webp",
+          "alt": "Foto del kit VF-1S Valkyrie armado",
+          "credito": {
+            "autor": "ocean yamaha",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/50527177@N00/13015732404"
+          }
+        },
+        {
+          "src": "assets/img/vf-1s-valkyrie-2.webp",
+          "alt": "VF-1S Valkyrie en modo caza (Fighter), vista frontal",
+          "credito": {
+            "autor": "maxvf1",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/68519899@N07/6320899288"
+          }
+        },
+        {
+          "src": "assets/img/vf-1s-valkyrie-3.webp",
+          "alt": "VF-1S Valkyrie en modo Gerwalk",
+          "credito": {
+            "autor": "maxvf1",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/68519899@N07/6320375783"
+          }
+        },
+        {
+          "src": "assets/img/vf-1s-valkyrie-4.webp",
+          "alt": "VF-1S Valkyrie en modo robot (Battroid) con su rifle",
+          "credito": {
+            "autor": "maxvf1",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/68519899@N07/6342710518"
+          }
+        }
+      ]
     },
     {
       "id": "zoids-liger-zero",
@@ -305,7 +613,37 @@
       },
       "categoria": "mechas",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/zoids-liger-zero.webp",
+          "alt": "Caja y piezas del kit Zoids RZ-041 Liger Zero",
+          "credito": {
+            "autor": "JOE WU",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/34186984@N00/2580299117"
+          }
+        },
+        {
+          "src": "assets/img/zoids-liger-zero-2.webp",
+          "alt": "Liger Zero blanco armado, de perfil",
+          "credito": {
+            "autor": "JOE WU",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/34186984@N00/2991157763"
+          }
+        },
+        {
+          "src": "assets/img/zoids-liger-zero-3.webp",
+          "alt": "Detalle de la ilustración del Liger Zero en la caja",
+          "nota": "Detalle recortado de la foto principal",
+          "credito": {
+            "autor": "JOE WU",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/34186984@N00/2580299117"
+          }
+        }
+      ]
     },
     {
       "id": "tamiya-cromwell",
@@ -328,7 +666,36 @@
       },
       "categoria": "blindados",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/tamiya-cromwell.webp",
+          "alt": "Foto del kit Cromwell Mk.IV (35221) armado",
+          "credito": {
+            "autor": "TDelCoro",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/45549579@N05/21619198058"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-cromwell-2.webp",
+          "alt": "Kit Tamiya Cromwell armado y pintado, vista lateral",
+          "credito": {
+            "autor": "TDelCoro",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/45549579@N05/21620177499"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-cromwell-3.webp",
+          "alt": "Kit Tamiya Cromwell armado, vista del costado derecho",
+          "credito": {
+            "autor": "TDelCoro",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/45549579@N05/21795284172"
+          }
+        }
+      ]
     },
     {
       "id": "tamiya-type90",
@@ -351,7 +718,36 @@
       },
       "categoria": "blindados",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/tamiya-type90.webp",
+          "alt": "Foto del kit Type 90 Tank JGSDF (35208) armado",
+          "credito": {
+            "autor": "TDelCoro",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/45549579@N05/22156309849"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-type90-2.webp",
+          "alt": "Kit Tamiya Type 90 con camuflaje, vista lateral",
+          "credito": {
+            "autor": "TDelCoro",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/45549579@N05/22156304959"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-type90-3.webp",
+          "alt": "Kit Tamiya Type 90 con camuflaje y figuras en la torreta",
+          "credito": {
+            "autor": "TDelCoro",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/45549579@N05/22353808841"
+          }
+        }
+      ]
     },
     {
       "id": "tamiya-jagdtiger",
@@ -374,7 +770,38 @@
       },
       "categoria": "blindados",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/tamiya-jagdtiger.webp",
+          "alt": "Caja y piezas del kit Jagdtiger Sd.Kfz.186 (35158)",
+          "credito": {
+            "autor": "TDelCoro",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/45549579@N05/6190757120"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-jagdtiger-2.webp",
+          "alt": "Jagdtiger real en el Tank Museum de Bovington, vista frontal",
+          "nota": "Referencia: el vehículo real",
+          "credito": {
+            "autor": "HawkeyeUK",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/65001151@N03/35807814553"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-jagdtiger-3.webp",
+          "alt": "Jagdtiger real con camuflaje en un museo",
+          "nota": "Referencia: el vehículo real",
+          "credito": {
+            "autor": "thy",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/50745355@N00/2901517056"
+          }
+        }
+      ]
     },
     {
       "id": "tamiya-porsche-956",
@@ -397,7 +824,38 @@
       },
       "categoria": "autos",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/tamiya-porsche-956.webp",
+          "alt": "Foto del kit Porsche 956 armado",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/6252744908"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-porsche-956-2.webp",
+          "alt": "Carrocería de un modelo del Porsche 956 sin pintar",
+          "nota": "Otro modelo del mismo auto",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/6252210307"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-porsche-956-3.webp",
+          "alt": "Modelo del Porsche 956 en escala 1/12 sobre una base giratoria",
+          "nota": "Referencia: el mismo auto en escala 1/12",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/25528143733"
+          }
+        }
+      ]
     },
     {
       "id": "tamiya-karmann-ghia",
@@ -420,7 +878,36 @@
       },
       "categoria": "autos",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/tamiya-karmann-ghia.webp",
+          "alt": "Foto del kit Volkswagen Karmann Ghia armado",
+          "credito": {
+            "autor": "Bill Abbott",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://commons.wikimedia.org/wiki/File:Tamiya_1-24_Volkswagen_Karman_Ghia_(15816410384).jpg"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-karmann-ghia-2.webp",
+          "alt": "Kit Tamiya Volkswagen Karmann Ghia negro armado, vista delantera lateral",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/16237482629"
+          }
+        },
+        {
+          "src": "assets/img/tamiya-karmann-ghia-3.webp",
+          "alt": "Kit Tamiya Volkswagen Karmann Ghia negro, vista de frente",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/16421965691"
+          }
+        }
+      ]
     },
     {
       "id": "airfix-spitfire-mk1",
@@ -443,7 +930,38 @@
       },
       "categoria": "aviones",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/airfix-spitfire-mk1.webp",
+          "alt": "Foto del kit Supermarine Spitfire Mk.I armado",
+          "credito": {
+            "autor": "ATom.UK",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/58613084@N02/8493469429"
+          }
+        },
+        {
+          "src": "assets/img/airfix-spitfire-mk1-2.webp",
+          "alt": "Réplica de un Supermarine Spitfire exhibida al aire libre",
+          "nota": "Referencia: réplica en exhibición",
+          "credito": {
+            "autor": "Elsie esq.",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/61132483@N00/252661126"
+          }
+        },
+        {
+          "src": "assets/img/airfix-spitfire-mk1-3.webp",
+          "alt": "Supermarine Spitfire real en una pista",
+          "nota": "Referencia: el avión real",
+          "credito": {
+            "autor": "Clint__Budd",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/58827557@N06/19003698954"
+          }
+        }
+      ]
     },
     {
       "id": "revell-p39",
@@ -466,7 +984,36 @@
       },
       "categoria": "aviones",
       "nuevo": false,
-      "ingreso": "2026-02-10"
+      "ingreso": "2026-02-10",
+      "imagenes": [
+        {
+          "src": "assets/img/revell-p39.webp",
+          "alt": "Foto del kit Bell P-39 Airacobra armado",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/5199582522"
+          }
+        },
+        {
+          "src": "assets/img/revell-p39-2.webp",
+          "alt": "Kit Revell P-39 Airacobra pintado, vista desde arriba",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/5447013909"
+          }
+        },
+        {
+          "src": "assets/img/revell-p39-3.webp",
+          "alt": "Kit Revell P-39 Airacobra pintado, de perfil",
+          "credito": {
+            "autor": "wbaiv",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/9998127@N06/5447013853"
+          }
+        }
+      ]
     },
     {
       "id": "hg-barbatos",
@@ -489,7 +1036,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/42405591@N02/24702985641"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hg-barbatos.webp",
+          "alt": "Foto del kit HG Gundam Barbatos armado, sosteniendo su maza junto a otro mobile suit azul",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/24702985641"
+          }
+        },
+        {
+          "src": "assets/img/hg-barbatos-2.webp",
+          "alt": "Kit HG Gundam Barbatos armado con su maza",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/24702995701"
+          }
+        },
+        {
+          "src": "assets/img/hg-barbatos-3.webp",
+          "alt": "Kit HG Gundam Barbatos junto al Schwalbe Graze",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/24168323854"
+          }
+        }
+      ]
     },
     {
       "id": "hg-grimgerde",
@@ -512,7 +1088,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/42405591@N02/24979868179"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hg-grimgerde.webp",
+          "alt": "Foto del kit HG Grimgerde rojo armado, en pose de ataque con sus espadas",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/24979868179"
+          }
+        },
+        {
+          "src": "assets/img/hg-grimgerde-2.webp",
+          "alt": "Kit HG Grimgerde rojo con sus espadas cruzadas",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/24720790343"
+          }
+        },
+        {
+          "src": "assets/img/hg-grimgerde-3.webp",
+          "alt": "Kit HG Grimgerde rojo de cuerpo entero",
+          "credito": {
+            "autor": "Marco Hazard",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/42405591@N02/24716941884"
+          }
+        }
+      ]
     },
     {
       "id": "hg-graze-kai",
@@ -535,7 +1140,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/52807141@N07/27062267181"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hg-graze-kai.webp",
+          "alt": "Foto del kit HG Graze Custom verde y blanco armado sobre fondo blanco",
+          "credito": {
+            "autor": "A_Polato",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/52807141@N07/27062267181"
+          }
+        },
+        {
+          "src": "assets/img/hg-graze-kai-2.webp",
+          "alt": "Kit HG Graze Custom verde y blanco, vista frontal",
+          "credito": {
+            "autor": "A_Polato",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/52807141@N07/27130995595"
+          }
+        },
+        {
+          "src": "assets/img/hg-graze-kai-3.webp",
+          "alt": "Kit HG Graze Custom verde y blanco, vista lateral",
+          "credito": {
+            "autor": "A_Polato",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/52807141@N07/27130997035"
+          }
+        }
+      ]
     },
     {
       "id": "hg-exia",
@@ -558,7 +1192,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/16226024@N00/2124600538"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hg-exia.webp",
+          "alt": "Foto del kit HG Gundam Exia azul y blanco armado, primer plano",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/2124600538"
+          }
+        },
+        {
+          "src": "assets/img/hg-exia-2.webp",
+          "alt": "Kit HG Gundam Exia de cuerpo entero con su GN Sword",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/2123826425"
+          }
+        },
+        {
+          "src": "assets/img/hg-exia-3.webp",
+          "alt": "Detalle de la GN Sword plegada del kit HG Exia",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/2123828035"
+          }
+        }
+      ]
     },
     {
       "id": "hgbf-sengoku-astray",
@@ -581,7 +1244,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/12173213@N00/11728452444"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hgbf-sengoku-astray.webp",
+          "alt": "Foto en primer plano del rostro del kit HGBF Sengoku Astray rojo con cuernos",
+          "credito": {
+            "autor": "matsuyuki",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/12173213@N00/11728452444"
+          }
+        },
+        {
+          "src": "assets/img/hgbf-sengoku-astray-2.webp",
+          "alt": "Kit HGBF Sengoku Astray con su armadura de samurái",
+          "credito": {
+            "autor": "matsuyuki",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/12173213@N00/11728438584"
+          }
+        },
+        {
+          "src": "assets/img/hgbf-sengoku-astray-3.webp",
+          "alt": "Las dos katanas del kit HGBF Sengoku Astray",
+          "credito": {
+            "autor": "matsuyuki",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/12173213@N00/11728831426"
+          }
+        }
+      ]
     },
     {
       "id": "hguc-sazabi",
@@ -604,7 +1296,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/16226024@N00/2722353343"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hguc-sazabi.webp",
+          "alt": "Foto del kit HGUC Sazabi rojo armado sobre una mesa de trabajo",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/2722353343"
+          }
+        },
+        {
+          "src": "assets/img/hguc-sazabi-2.webp",
+          "alt": "Kit HGUC Sazabi rojo de cuerpo entero sobre fondo azul",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/2671887888"
+          }
+        },
+        {
+          "src": "assets/img/hguc-sazabi-3.webp",
+          "alt": "Kits HGUC Sazabi y HGUC ν Gundam lado a lado",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/2671889764"
+          }
+        }
+      ]
     },
     {
       "id": "hguc-gouf-custom",
@@ -627,7 +1348,38 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/16226024@N00/5279435245"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hguc-gouf-custom.webp",
+          "alt": "Foto del kit HGUC Gouf Custom azul armado sobre una mesa de trabajo",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/5279435245"
+          }
+        },
+        {
+          "src": "assets/img/hguc-gouf-custom-2.webp",
+          "alt": "Cabeza del kit HGUC Gouf Custom durante el lijado",
+          "nota": "Proceso de armado",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/5273959648"
+          }
+        },
+        {
+          "src": "assets/img/hguc-gouf-custom-3.webp",
+          "alt": "Piezas del torso del HGUC Gouf Custom durante el armado",
+          "nota": "Proceso de armado",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/5277508669"
+          }
+        }
+      ]
     },
     {
       "id": "hguc-guncannon",
@@ -650,7 +1402,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/16226024@N00/28534149800"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hguc-guncannon.webp",
+          "alt": "Foto del kit HGUC Guncannon naranja armado sobre una base de diorama con su placa",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/28534149800"
+          }
+        },
+        {
+          "src": "assets/img/hguc-guncannon-2.webp",
+          "alt": "Kit HGUC Guncannon pintado, de cuerpo entero",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/28534153560"
+          }
+        },
+        {
+          "src": "assets/img/hguc-guncannon-3.webp",
+          "alt": "Kit HGUC Guncannon pintado con sus cañones de hombro",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/28534152940"
+          }
+        }
+      ]
     },
     {
       "id": "hguc-zaku-f2",
@@ -673,7 +1454,36 @@
         "licencia": "CC BY-SA 2.0",
         "fuente": "https://www.flickr.com/photos/16226024@N00/4843481835"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hguc-zaku-f2.webp",
+          "alt": "Foto del kit HGUC Zaku II F2 color crema armado, apuntando con su rifle",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/4843481835"
+          }
+        },
+        {
+          "src": "assets/img/hguc-zaku-f2-2.webp",
+          "alt": "Dos kits HGUC Zaku II F2 armados con sus armas",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/4844076410"
+          }
+        },
+        {
+          "src": "assets/img/hguc-zaku-f2-3.webp",
+          "alt": "Detalle del HGUC Zaku II F2 apuntando con su rifle",
+          "credito": {
+            "autor": "FHKE",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/16226024@N00/4843480895"
+          }
+        }
+      ]
     },
     {
       "id": "hguc-gp03-dendrobium",
@@ -696,11 +1506,41 @@
         "licencia": "CC BY 2.0",
         "fuente": "https://www.flickr.com/photos/12452841@N00/9486169610"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hguc-gp03-dendrobium.webp",
+          "alt": "Foto en primer plano del kit GP03 Dendrobium con el Stamen dentro de la armadura Orchis gris",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/9486169610"
+          }
+        },
+        {
+          "src": "assets/img/hguc-gp03-dendrobium-2.webp",
+          "alt": "Kit HGUC GP03 Dendrobium completo en exhibición",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/9483370949"
+          }
+        },
+        {
+          "src": "assets/img/hguc-gp03-dendrobium-3.webp",
+          "alt": "Detalle del Stamen dentro de la armadura Orchis",
+          "nota": "Detalle recortado de la foto principal",
+          "credito": {
+            "autor": "othree",
+            "licencia": "CC BY 2.0",
+            "fuente": "https://www.flickr.com/photos/12452841@N00/9486169610"
+          }
+        }
+      ]
     },
     {
-      "id": "hg-beargguy",
-      "nombre": "HG Beargguy (versión rosa)",
+      "id": "hgbf-beargguy-iii",
+      "nombre": "HGBF Beargguy III (San)",
       "marca": "Bandai",
       "linea": "High Grade Build Fighters",
       "franquicia": "Gundam",
@@ -709,17 +1549,46 @@
       "precio": 16.9,
       "stock": 10,
       "dificultad": "Principiante",
-      "descripcion": "El Acguy convertido en oso de peluche. Pocas piezas y muy expresivo: perfecto para regalar o para iniciarse.",
-      "imagen": "assets/img/hg-beargguy.webp",
-      "alt": "Foto del kit HG Beargguy rosa armado, de pie junto a una ventana",
+      "descripcion": "El oso de peluche mobile suit de Chinatsu Kousaka, con su capa y su gran Beargguy de mano. Pocas piezas y muy expresivo: perfecto para regalar o para iniciarse.",
+      "imagen": "assets/img/hgbf-beargguy-iii.webp",
+      "alt": "Kit HGBF Beargguy III amarillo armado, sentado con su capa blanca",
       "nuevo": false,
       "ingreso": "2026-08-18",
       "credito": {
-        "autor": "Polycaps",
-        "licencia": "CC BY 2.0",
-        "fuente": "https://www.flickr.com/photos/54132475@N02/6529511981"
+        "autor": "matsuyuki",
+        "licencia": "CC BY-SA 2.0",
+        "fuente": "https://www.flickr.com/photos/12173213@N00/11267466216"
       },
-      "categoria": "high-grade"
+      "categoria": "high-grade",
+      "imagenes": [
+        {
+          "src": "assets/img/hgbf-beargguy-iii.webp",
+          "alt": "Kit HGBF Beargguy III amarillo armado, sentado con su capa blanca",
+          "credito": {
+            "autor": "matsuyuki",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/12173213@N00/11267466216"
+          }
+        },
+        {
+          "src": "assets/img/hgbf-beargguy-iii-2.webp",
+          "alt": "Kit HGBF Beargguy III amarillo de pie, vista frontal",
+          "credito": {
+            "autor": "matsuyuki",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/12173213@N00/11620250063"
+          }
+        },
+        {
+          "src": "assets/img/hgbf-beargguy-iii-3.webp",
+          "alt": "Caja del kit HGBF Beargguy III (San) de Bandai",
+          "credito": {
+            "autor": "matsuyuki",
+            "licencia": "CC BY-SA 2.0",
+            "fuente": "https://www.flickr.com/photos/12173213@N00/11365995676"
+          }
+        }
+      ]
     }
   ]
 }

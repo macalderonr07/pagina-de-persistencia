@@ -13,6 +13,77 @@ const $ = (selector) => document.querySelector(selector);
 const idBuscado = new URLSearchParams(location.search).get("id") ?? "";
 let producto = null;
 let catalogo = { productos: [], categorias: [] };
+let galeria = [];
+let fotoActual = 0;
+
+// ======================= Galería =======================
+// Las miniaturas son <button> (no enlaces): cambian la foto, no navegan.
+// aria-pressed marca la elegida; el estado también se ve con borde Y contador
+// "Foto n de N", no solo con color (WCAG 1.4.1).
+function mostrarFoto(indice, { anunciar = false } = {}) {
+  const total = galeria.length;
+  fotoActual = ((indice % total) + total) % total;
+  const foto = galeria[fotoActual];
+  const img = $("#ficha-img");
+  img.src = foto.src;
+  img.alt = foto.alt ?? `Foto del kit ${producto.nombre}`;
+  const contador = $("#galeria-contador");
+  // Solo se anuncia cuando la cambia el usuario, no al cargar la página.
+  contador.setAttribute("aria-live", anunciar ? "polite" : "off");
+  contador.textContent = `Foto ${fotoActual + 1} de ${total}`;
+  const nota = $("#ficha-nota");
+  nota.textContent = foto.nota ?? "";
+  nota.hidden = !foto.nota;
+  $("#ficha-credito").replaceChildren(
+    `Foto: ${foto.credito.autor} (${foto.credito.licencia}) · `,
+    view.el("a", {
+      clase: "underline underline-offset-2",
+      texto: "ver original",
+      attrs: { href: foto.credito.fuente, rel: "noopener noreferrer", target: "_blank", "aria-label": `Ver foto original de ${foto.credito.autor} (abre en pestaña nueva)` },
+    })
+  );
+  document.querySelectorAll("#galeria-miniaturas button").forEach((b, i) => {
+    const elegida = i === fotoActual;
+    b.setAttribute("aria-pressed", String(elegida));
+    b.classList.toggle("border-blue-700", elegida);
+    b.classList.toggle("border-transparent", !elegida);
+  });
+  const varias = total > 1;
+  $("#galeria-anterior").hidden = !varias;
+  $("#galeria-siguiente").hidden = !varias;
+}
+
+function pintarMiniaturas() {
+  $("#galeria-miniaturas").replaceChildren(
+    ...galeria.map((foto, i) => {
+      const boton = view.el("button", {
+        clase: "block w-full overflow-hidden rounded-lg border-4 border-transparent hover:border-blue-300",
+        attrs: { type: "button", "aria-label": `Ver foto ${i + 1} de ${galeria.length}: ${foto.alt ?? producto.nombre}` },
+      }, [
+        // alt="": el nombre lo da el aria-label del botón; repetirlo sería ruido.
+        view.el("img", { clase: "aspect-[4/3] w-full object-cover", attrs: { src: foto.src, alt: "", width: "200", height: "150", loading: "lazy", decoding: "async" } }),
+      ]);
+      boton.addEventListener("click", () => mostrarFoto(i, { anunciar: true }));
+      return view.el("li", {}, [boton]);
+    })
+  );
+}
+
+function conectarGaleria() {
+  $("#galeria-anterior").addEventListener("click", () => mostrarFoto(fotoActual - 1, { anunciar: true }));
+  $("#galeria-siguiente").addEventListener("click", () => mostrarFoto(fotoActual + 1, { anunciar: true }));
+  // Flechas del teclado cuando el foco está dentro de la galería.
+  $("#galeria").addEventListener("keydown", (evento) => {
+    if (evento.key !== "ArrowLeft" && evento.key !== "ArrowRight") return;
+    if (evento.target.closest("input, textarea")) return;
+    evento.preventDefault();
+    mostrarFoto(fotoActual + (evento.key === "ArrowRight" ? 1 : -1), { anunciar: true });
+    // Si el foco estaba en una miniatura, acompaña a la foto elegida.
+    if (evento.target.closest("#galeria-miniaturas")) {
+      document.querySelectorAll("#galeria-miniaturas button")[fotoActual]?.focus();
+    }
+  });
+}
 
 function pintarFicha() {
   const p = producto;
@@ -26,17 +97,10 @@ function pintarFicha() {
   miga.href = categoria ? view.urlCategoria(categoria.id) : "catalogo.html";
   $("#miga-actual").textContent = p.nombre;
 
-  const img = $("#ficha-img");
-  img.src = p.imagen;
-  img.alt = p.alt ?? `Kit ${p.nombre}`;
-  $("#ficha-credito").replaceChildren(
-    `Foto: ${p.credito.autor} (${p.credito.licencia}) · `,
-    view.el("a", {
-      clase: "underline underline-offset-2",
-      texto: "ver original",
-      attrs: { href: p.credito.fuente, rel: "noopener noreferrer", target: "_blank", "aria-label": "Ver foto original (abre en pestaña nueva)" },
-    })
-  );
+  galeria = view.imagenesDe(p);
+  pintarMiniaturas();
+  // Si el catálogo se actualiza en segundo plano, no se pierde la foto elegida.
+  mostrarFoto(Math.min(fotoActual, galeria.length - 1));
   $("#ficha-nuevo").hidden = p.nuevo !== true;
   $("#ficha-nuevo").textContent = p.nuevo ? `Nuevo · ingresó el ${view.dia(p.ingreso)}` : "";
   $("#ficha-marca").textContent = `${p.marca} · ${p.linea}`;
@@ -131,6 +195,7 @@ function mostrarNoEncontrado() {
 }
 
 conectarCompra();
+conectarGaleria();
 
 iniciarPagina({
   alCatalogo: (nuevo) => {

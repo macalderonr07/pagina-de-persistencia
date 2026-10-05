@@ -25,6 +25,18 @@ export const dia = (iso) => {
 export const urlProducto = (id) => `producto.html?id=${encodeURIComponent(id)}`;
 export const urlCategoria = (id) => `catalogo.html?categoria=${encodeURIComponent(id)}`;
 
+/**
+ * Fotos de un producto. La primera es la principal (la de las tarjetas).
+ * Si el producto no trae "imagenes" (catálogo viejo en IndexedDB), se arma
+ * una galería de una sola foto con los campos de siempre.
+ */
+export function imagenesDe(p) {
+  const validas = Array.isArray(p.imagenes)
+    ? p.imagenes.filter((i) => typeof i?.src === "string" && i.credito)
+    : [];
+  return validas.length ? validas : [{ src: p.imagen, alt: p.alt, credito: p.credito }];
+}
+
 export function el(etiqueta, { clase, texto, attrs } = {}, hijos = []) {
   const nodo = document.createElement(etiqueta);
   if (clase) nodo.className = clase;
@@ -281,16 +293,21 @@ export function renderCreditos(productos) {
   const lista = $("#lista-creditos");
   if (!lista) return;
   lista.replaceChildren(
-    ...productos.map((p) =>
-      el("li", {}, [
-        el("span", { clase: "font-semibold text-white", texto: `${p.nombre}: ` }),
-        el("span", { texto: `${p.credito.autor}, ${p.credito.licencia}. ` }),
-        el("a", {
-          clase: "text-yellow-300 underline underline-offset-2",
-          texto: "Ver original",
-          attrs: { href: p.credito.fuente, rel: "noopener noreferrer", target: "_blank", "aria-label": `Ver foto original de ${p.nombre} (abre en pestaña nueva)` },
-        }),
-      ])
-    )
+    ...productos.map((p) => {
+      const fotos = imagenesDe(p);
+      return el("li", {}, [
+        el("span", { clase: "font-semibold text-white", texto: p.nombre }),
+        el("ul", { clase: "ml-4 list-disc", attrs: { role: "list" } }, fotos.map((foto, i) =>
+          el("li", {}, [
+            el("span", { texto: `Foto ${i + 1}: ${foto.credito.autor}, ${foto.credito.licencia}. ` }),
+            el("a", {
+              clase: "text-yellow-300 underline underline-offset-2",
+              texto: "Ver original",
+              attrs: { href: foto.credito.fuente, rel: "noopener noreferrer", target: "_blank", "aria-label": `Ver original de la foto ${i + 1} de ${p.nombre} (abre en pestaña nueva)` },
+            }),
+          ])
+        )),
+      ]);
+    })
   );
 }

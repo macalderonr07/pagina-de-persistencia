@@ -26,12 +26,17 @@ imágenes, filtros, carrito, pedidos y formulario.
 |---|---|
 | `index.html` | Carrusel de **novedades** (productos con `"nuevo": true`, del ingreso más reciente al más antiguo), categorías en **barras diagonales** que llevan a `catalogo.html?categoria=…`, y formulario de contacto |
 | `catalogo.html` | Catálogo con filtros (categoría, marca, franquicia, escala, texto), orden y vista cuadrícula/lista. Los filtros se leen de la URL (`?categoria=high-grade&orden=precio-asc`) y se reflejan en ella con `history.replaceState`, así el enlace se puede compartir |
-| `producto.html?id=…` | Ficha del kit: foto, precio, stock, cantidad, especificaciones, migas de pan y productos relacionados (misma categoría, luego misma franquicia) |
+| `producto.html?id=…` | Ficha del kit: **galería de al menos 3 fotos**, precio, stock, cantidad, especificaciones, migas de pan y productos relacionados (misma categoría, luego misma franquicia) |
 
 **Carrusel** (patrón *Carousel* de las WAI-ARIA APG): botón Pausar/Reanudar primero en el orden de
 tabulación (WCAG 2.2.2), anterior/siguiente y un punto por diapositiva con `aria-current`. Rota cada 6 s;
 se detiene si el foco entra al carrusel, se pausa mientras el ratón está encima y arranca pausado con
 `prefers-reduced-motion`. Las diapositivas ocultas llevan `inert`.
+
+**Galería de la ficha**: foto grande con botones anterior/siguiente, contador "Foto n de N" (anunciado con
+`aria-live` solo cuando el usuario cambia de foto) y miniaturas como `<button aria-pressed>`. Las flechas ←/→
+cambian de foto cuando el foco está en la galería. Cada foto tiene su propio `alt`, su crédito y, si hace
+falta, una **nota** visible (ver "Créditos de imágenes").
 
 **Barras diagonales**: cada barra es un enlace real (funciona con teclado, clic central y sin JS en la
 página destino). En escritorio son columnas inclinadas con `skewX(-12deg)` y el contenido se
@@ -62,10 +67,10 @@ sw.js                   Service Worker (en la raíz para que su scope cubra todo
 assets/
   tailwind.css          fuente de estilos (Tailwind + capa base/componentes)
   styles.css            CSS compilado (NO editar a mano)
-  img/                  29 fotos de kits reales (WebP 800×600)
+  img/                  88 fotos (WebP 800×600): <id>.webp es la principal, <id>-2/-3/-4 las de la galería
   icons/                íconos de la PWA
 data/productos.json     categorías + catálogo (marca, línea, franquicia, serie, escala, precio,
-                        stock, categoría, nuevo/ingreso, crédito de la foto)
+                        stock, categoría, nuevo/ingreso, imagenes[] con alt, crédito y nota)
 js/
   comun.js              marco común: menú, carrito, estado de red, SW, instalación, borrado de datos
   inicio.js             portada (carrusel + barras + contacto)
@@ -142,6 +147,17 @@ Igual conviene una revisión manual con lector de pantalla (NVDA/Orca).
 
 Fotos de kits reales armados por sus autores, obtenidas de Flickr/Wikimedia Commons vía
 Openverse con licencias **CC BY 2.0 / CC BY-SA 2.0**. Autor, licencia y enlace al original de
-cada foto están en `data/productos.json` y en el pie de la página ("Créditos de las fotografías").
+cada una de las 88 fotos están en `data/productos.json`, bajo cada foto de la galería y en el pie de
+la página ("Créditos de las fotografías").
+
+Cada kit tiene al menos 3 fotos, revisadas una por una para confirmar que muestran ese modelo. Cuando
+no había 3 fotos libres del **mismo** kit, la foto lleva una nota visible que lo dice:
+- *Mismo mobile suit, armado por otro modelista* (ν Gundam, Hi-ν, Wing Zero, MG RX-78-2).
+- *Referencia: el vehículo real* o *réplica en exhibición* (Jagdtiger, Spitfire) y *el mismo auto en escala 1/12* (Porsche 956).
+- *Proceso de armado* (Gouf Custom: las fotos libres del kit son del armado).
+- *Detalle recortado de la foto…* (Delta Plus, Liger Zero, GP03 Dendrobium).
+
+El antiguo "HG Beargguy (versión rosa)" se reemplazó por el **HGBF Beargguy III (San)**: del rosa solo
+existe una foto con licencia libre.
 Las fotos se recortaron a 4:3 (las verticales se encajan sobre un fondo desenfocado de la misma foto, para no cortar el kit) y se convirtieron a WebP (obra derivada, misma licencia en las BY-SA).
 Marcas y franquicias pertenecen a sus dueños; precios referenciales.
