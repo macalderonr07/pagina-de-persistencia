@@ -8,7 +8,11 @@
   html {
     /* WCAG 2.4.11 (Foco no oculto): el header es sticky, así que al saltar a un
        ancla o tabular hacia arriba el elemento enfocado no debe quedar debajo. */
-    scroll-padding-top: 7.5rem;
+    scroll-padding-top: 5.5rem;
+  }
+  /* En pantallas medianas el header es más alto (menú en línea, más padding). */
+  @media (min-width: 768px) {
+    html { scroll-padding-top: 7.5rem; }
   }
 
   @media (prefers-reduced-motion: no-preference) {

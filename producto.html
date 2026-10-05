@@ -19,15 +19,16 @@
   <a href="#contenido" class="sr-only-focusable fixed left-4 top-4 z-50 rounded-lg bg-yellow-400 px-4 py-3 font-bold text-navy-950">Saltar al contenido principal</a>
 
   <header class="sticky top-0 z-40 bg-navy-900 text-white shadow-lg">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-4 py-2 sm:gap-3 sm:py-3">
       <a href="index.html" class="flex items-center gap-2 rounded-lg text-lg font-extrabold tracking-tight sm:text-xl">
-        <img src="assets/icons/icon.svg" alt="" width="36" height="36" class="h-9 w-9">
+        <img src="assets/icons/icon.svg" alt="" width="36" height="36" class="h-8 w-8 sm:h-9 sm:w-9">
         <span>Hangar <span class="text-yellow-400">Kits</span><span class="sr-only">, ir al inicio</span></span>
       </a>
 
-      <button type="button" id="boton-menu" class="btn ml-auto border-2 border-white/70 px-3 text-white hover:bg-navy-800 md:hidden"
+      <!-- En celular el botón muestra solo ☰; "Menú" sigue siendo su nombre accesible (sr-only). -->
+      <button type="button" id="boton-menu" class="btn order-3 min-w-tap border-2 border-white/70 px-3 text-white hover:bg-navy-800 md:hidden"
               aria-expanded="false" aria-controls="menu-principal">
-        <span aria-hidden="true">☰</span> Menú
+        <span aria-hidden="true" class="text-xl leading-none">☰</span><span class="sr-only sm:not-sr-only">Menú</span>
       </button>
 
       <nav id="menu-principal" aria-label="Principal" class="order-last hidden w-full md:order-none md:ml-6 md:block md:w-auto">
@@ -38,11 +39,11 @@
         </ul>
       </nav>
 
-      <div class="flex items-center gap-2 md:ml-auto">
-        <button type="button" id="boton-instalar" class="btn border-2 border-yellow-400 text-yellow-300 hover:bg-navy-800" hidden>
-          Instalar app
+      <div class="order-2 ml-auto flex items-center gap-2 md:order-none">
+        <button type="button" id="boton-instalar" class="btn border-2 border-yellow-400 px-3 text-yellow-300 hover:bg-navy-800" hidden>
+          <span aria-hidden="true">⤓</span><span class="sr-only sm:not-sr-only">Instalar app</span>
         </button>
-        <button type="button" id="boton-carrito" class="btn-acento" aria-haspopup="dialog" aria-controls="dialogo-carrito">
+        <button type="button" id="boton-carrito" class="btn-acento px-3 sm:px-4" aria-haspopup="dialog" aria-controls="dialogo-carrito">
           <span aria-hidden="true">🛒</span>
           <span class="sr-only sm:not-sr-only">Carrito</span>
           <span id="contador-carrito" class="chip bg-navy-900 text-white">0</span>
@@ -53,7 +54,7 @@
 
     <!-- Estado de conexión: role="status" lo anuncia sin robar el foco (WCAG 4.1.3). -->
     <div id="estado-red" role="status" class="border-t border-navy-700">
-      <p id="estado-red-texto" class="mx-auto max-w-7xl px-4 py-1.5 text-sm text-slate-200">Comprobando conexión…</p>
+      <p id="estado-red-texto" class="mx-auto max-w-7xl px-4 py-1 text-xs text-slate-200 sm:py-1.5 sm:text-sm">Comprobando conexión…</p>
     </div>
   </header>
 
@@ -132,7 +133,7 @@
     <section id="relacionados" aria-labelledby="titulo-relacionados" class="border-t border-slate-200 bg-white" hidden>
       <div class="mx-auto max-w-7xl px-4 py-10">
         <h2 id="titulo-relacionados" class="text-2xl font-extrabold text-navy-900">También te puede interesar</h2>
-        <ul id="lista-relacionados" role="list" class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"></ul>
+        <ul id="lista-relacionados" role="list" class="mt-6 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4"></ul>
       </div>
     </section>
   </main>
@@ -201,28 +202,31 @@
        pantalla hay UN solo enlace por tarjeta. El botón queda por encima (z-10). -->
   <template id="tpl-producto">
     <li class="producto">
+      <!-- Mobile-first: en celular la tarjeta es compacta (2 por fila); desde sm:
+           aparecen descripción, línea y dificultad. -->
       <article class="relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-shadow hover:shadow-md" data-contenedor>
         <figure class="relative bg-slate-200" data-figura>
           <img data-img width="800" height="600" loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" alt="">
-          <span data-escala class="chip absolute left-3 top-3 bg-yellow-400 text-navy-950"></span>
-          <span data-nuevo class="chip absolute right-3 top-3 bg-red-700 text-white" hidden>Nuevo</span>
-          <figcaption data-credito class="px-3 py-1 text-xs text-slate-700"></figcaption>
+          <span data-escala class="chip absolute left-2 top-2 bg-yellow-400 text-navy-950 sm:left-3 sm:top-3"></span>
+          <span data-nuevo class="chip absolute right-2 top-2 bg-red-700 text-white sm:right-3 sm:top-3" hidden>Nuevo</span>
+          <!-- Crédito: en celular se omite aquí (está en la ficha y en el pie de página). -->
+          <figcaption data-credito class="hidden px-3 py-1 text-xs text-slate-700 sm:block"></figcaption>
         </figure>
-        <div class="flex flex-1 flex-col p-4">
-          <p data-marca class="text-sm font-semibold uppercase tracking-wide text-blue-800"></p>
-          <h3 data-nombre class="mt-1 text-lg font-bold leading-snug text-navy-900">
+        <div class="flex flex-1 flex-col p-3 sm:p-4">
+          <p data-marca class="text-xs font-semibold uppercase tracking-wide text-blue-800 sm:text-sm"></p>
+          <h3 data-nombre class="mt-1 text-sm font-bold leading-snug text-navy-900 sm:text-lg">
             <a data-enlace class="underline-offset-2 after:absolute after:inset-0 after:content-[''] hover:underline"></a>
           </h3>
-          <p data-franquicia class="mt-1 text-sm text-slate-700"></p>
-          <p data-descripcion class="mt-2 text-sm text-slate-700"></p>
-          <dl class="mt-3 grid grid-cols-2 gap-x-3 gap-y-1 text-sm">
-            <dt class="text-slate-600">Línea</dt><dd data-linea class="font-medium"></dd>
-            <dt class="text-slate-600">Dificultad</dt><dd data-dificultad class="font-medium"></dd>
+          <p data-franquicia class="mt-1 hidden text-sm text-slate-700 sm:block"></p>
+          <p data-descripcion class="mt-2 hidden text-sm text-slate-700 sm:block"></p>
+          <dl class="mt-2 grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-xs sm:mt-3 sm:grid-cols-2 sm:text-sm">
+            <dt class="hidden text-slate-600 sm:block">Línea</dt><dd data-linea class="hidden font-medium sm:block"></dd>
+            <dt class="hidden text-slate-600 sm:block">Dificultad</dt><dd data-dificultad class="hidden font-medium sm:block"></dd>
             <dt class="text-slate-600">Stock</dt><dd data-stock class="font-medium"></dd>
           </dl>
-          <div class="mt-auto flex items-center justify-between gap-3 pt-4">
-            <p data-precio class="text-2xl font-extrabold text-navy-900"></p>
-            <button type="button" data-agregar class="btn-primario relative z-10"></button>
+          <div class="mt-auto flex flex-col gap-2 pt-3 sm:flex-row sm:items-center sm:justify-between sm:gap-3 sm:pt-4">
+            <p data-precio class="text-xl font-extrabold text-navy-900 sm:text-2xl"></p>
+            <button type="button" data-agregar class="btn-primario relative z-10 w-full px-3 text-sm sm:w-auto sm:px-4 sm:text-base"></button>
           </div>
         </div>
       </article>

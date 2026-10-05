@@ -127,6 +127,20 @@ sin `window.confirm`).
 4. **Acciones sin red**: los pedidos se guardan en IndexedDB; los mensajes de contacto quedan
    "pendientes" en la bandeja y se procesan con el evento `online` (envío simulado: no hay backend).
 
+## Diseño responsivo (mobile-first)
+
+Las clases sin prefijo de Tailwind son para el celular; `sm:` (640 px), `md:` (768 px), `lg:` y `xl:` agregan
+lo que cabe en pantallas más grandes. Probado en iPhone SE (320 px), Galaxy S9+, Pixel 5, iPhone 12 Pro Max
+e iPad Mini: sin scroll horizontal y sin zoom.
+
+- **Header compacto en celular**: una sola fila (logo · carrito · ☰). Los textos "Menú", "Carrito" e
+  "Instalar app" quedan como `sr-only` (siguen siendo el nombre accesible) y se ven desde `sm:`.
+- **Tarjetas en 2 columnas desde 320 px**: foto, marca, nombre, stock, precio y "Agregar". Descripción,
+  línea y dificultad aparecen desde `sm:`; siguen completas en la ficha. El catálogo pasó de ~19 000 px
+  de alto en un celular a ~6 000 px.
+- **Vista Lista** en celular: fila horizontal (foto de 7,5 rem | datos).
+- Galería, carrusel y barras de categorías tienen sus propias variantes para celular.
+
 ## Accesibilidad (WCAG 2.2 AA) y teclado
 
 - Landmarks (`header`, `nav`, `main`, `aside`, `footer`), jerarquía de títulos, `lang="es"`.

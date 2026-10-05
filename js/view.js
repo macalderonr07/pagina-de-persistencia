@@ -67,9 +67,10 @@ export function mostrarEstadoRed(enLinea) {
   texto.classList.toggle("text-navy-950", !enLinea);
   texto.classList.toggle("font-semibold", !enLinea);
   // Texto + icono, no solo color (WCAG 1.4.1).
+  // Mensajes cortos: en un celular deben caber en una o dos líneas del header fijo.
   texto.textContent = enLinea
-    ? "● En línea: el catálogo se sincroniza automáticamente."
-    : "▲ Sin conexión: estás usando el catálogo guardado en tu dispositivo. Carrito, pedidos y mensajes siguen funcionando.";
+    ? "● En línea: catálogo sincronizado."
+    : "▲ Sin conexión: usas el catálogo guardado. Carrito, pedidos y mensajes siguen funcionando.";
 }
 
 export function mostrarOrigenCatalogo(nodo, origen, meta) {
@@ -177,25 +178,36 @@ export function renderProductos(lista, productos, { vista = "cuadricula", unidad
 
   // Grid de CSS: la vista cuadrícula usa columnas responsivas; la vista lista, una
   // sola columna con la tarjeta en dos columnas internas (imagen | datos).
-  lista.className = enLista ? "mt-6 grid gap-4" : `mt-6 grid gap-6 ${columnas ?? "sm:grid-cols-2 xl:grid-cols-3"}`;
+  // Mobile-first: 2 columnas desde el celular más chico; 3 en pantallas grandes.
+  lista.className = enLista
+    ? "mt-6 grid gap-3 sm:gap-4"
+    : `mt-6 grid grid-cols-2 gap-3 sm:gap-6 ${columnas ?? "xl:grid-cols-3"}`;
 
   lista.replaceChildren(
     ...productos.map((p) => {
       const nodo = plantilla.content.cloneNode(true);
       const articulo = $("[data-contenedor]", nodo);
       const img = $("[data-img]", nodo);
-      // En móvil la tarjeta sigue apilada (flex-col); desde sm pasa a grid de 2 columnas.
-      // En esa vista la celda de la foto se estira al alto del texto: la figura pasa a
+      // Vista lista: fila horizontal (foto | datos) también en el celular, con la foto
+      // más angosta. La celda de la foto se estira al alto del texto: la figura pasa a
       // columna flex y la imagen ocupa todo el alto libre (sin 4:3 fijo) con
       // object-cover, para que no quede un hueco gris bajo la foto.
       if (enLista) {
-        articulo.classList.add("sm:grid", "sm:grid-cols-[14rem_minmax(0,1fr)]");
-        $("[data-figura]", nodo).classList.add("sm:flex", "sm:flex-col");
-        img.classList.add("sm:aspect-auto", "sm:min-h-0", "sm:flex-1");
+        articulo.classList.remove("flex", "flex-col");
+        articulo.classList.add("grid", "grid-cols-[7.5rem_minmax(0,1fr)]", "sm:grid-cols-[14rem_minmax(0,1fr)]");
+        $("[data-figura]", nodo).classList.add("flex", "flex-col");
+        img.classList.remove("aspect-[4/3]");
+        img.classList.add("min-h-0", "flex-1");
       }
       img.src = p.imagen;
       img.alt = p.alt ?? `Kit ${p.nombre}`;
-      $("[data-escala]", nodo).textContent = `Escala ${p.escala}`;
+      // En celular la etiqueta muestra solo "1/144" (no choca con "Nuevo"); la palabra
+      // "Escala" sigue ahí para lectores de pantalla y se ve desde sm.
+      $("[data-escala]", nodo).replaceChildren(
+        // sm:mr-1: el chip es inline-flex y en flex se pierde el espacio final del texto.
+        el("span", { clase: "sr-only sm:not-sr-only sm:mr-1", texto: "Escala " }),
+        p.escala
+      );
       const insignia = $("[data-nuevo]", nodo);
       if (insignia) insignia.hidden = p.nuevo !== true;
       $("[data-credito]", nodo).textContent = p.credito ? `Foto: ${p.credito.autor} (${p.credito.licencia})` : "";
@@ -217,11 +229,20 @@ export function renderProductos(lista, productos, { vista = "cuadricula", unidad
 
       const boton = $("[data-agregar]", nodo);
       const enCarrito = unidadesEnCarrito(p.id);
-      boton.textContent = enCarrito > 0 ? `Agregar (${enCarrito} en carrito)` : "Agregar al carrito";
+      // Texto visible: "Agregar" en celular (la tarjeta es angosta) y "Agregar al carrito"
+      // desde sm. Si ya hay unidades, se agrega "(n)".
+      boton.replaceChildren(
+        "Agregar",
+        el("span", { clase: "hidden sm:inline", texto: " al carrito" }),
+        ...(enCarrito > 0 ? [` (${enCarrito})`] : [])
+      );
       // El nombre accesible incluye el producto: "Agregar al carrito" repetido 29 veces
-      // no ayuda a quien navega por lista de botones (WCAG 2.4.6 / 2.5.3: el texto visible
-      // está contenido al inicio del nombre accesible).
-      boton.setAttribute("aria-label", `${boton.textContent}: ${p.nombre}`);
+      // no ayuda a quien navega por lista de botones (WCAG 2.4.6). Empieza con el texto
+      // visible ("Agregar"), como pide WCAG 2.5.3 para quien usa control por voz.
+      boton.setAttribute(
+        "aria-label",
+        `Agregar al carrito: ${p.nombre}${enCarrito > 0 ? ` (${enCarrito} en carrito)` : ""}`
+      );
       boton.disabled = p.stock === 0 || enCarrito >= p.stock;
       boton.addEventListener("click", () => alAgregar(p.id));
       return nodo;

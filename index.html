@@ -19,15 +19,16 @@
   <a href="#contenido" class="sr-only-focusable fixed left-4 top-4 z-50 rounded-lg bg-yellow-400 px-4 py-3 font-bold text-navy-950">Saltar al contenido principal</a>
 
   <header class="sticky top-0 z-40 bg-navy-900 text-white shadow-lg">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
+    <div class="mx-auto flex max-w-7xl flex-wrap items-center gap-2 px-4 py-2 sm:gap-3 sm:py-3">
       <a href="index.html" class="flex items-center gap-2 rounded-lg text-lg font-extrabold tracking-tight sm:text-xl">
-        <img src="assets/icons/icon.svg" alt="" width="36" height="36" class="h-9 w-9">
+        <img src="assets/icons/icon.svg" alt="" width="36" height="36" class="h-8 w-8 sm:h-9 sm:w-9">
         <span>Hangar <span class="text-yellow-400">Kits</span><span class="sr-only">, ir al inicio</span></span>
       </a>
 
-      <button type="button" id="boton-menu" class="btn ml-auto border-2 border-white/70 px-3 text-white hover:bg-navy-800 md:hidden"
+      <!-- En celular el botón muestra solo ☰; "Menú" sigue siendo su nombre accesible (sr-only). -->
+      <button type="button" id="boton-menu" class="btn order-3 min-w-tap border-2 border-white/70 px-3 text-white hover:bg-navy-800 md:hidden"
               aria-expanded="false" aria-controls="menu-principal">
-        <span aria-hidden="true">☰</span> Menú
+        <span aria-hidden="true" class="text-xl leading-none">☰</span><span class="sr-only sm:not-sr-only">Menú</span>
       </button>
 
       <nav id="menu-principal" aria-label="Principal" class="order-last hidden w-full md:order-none md:ml-6 md:block md:w-auto">
@@ -38,11 +39,11 @@
         </ul>
       </nav>
 
-      <div class="flex items-center gap-2 md:ml-auto">
-        <button type="button" id="boton-instalar" class="btn border-2 border-yellow-400 text-yellow-300 hover:bg-navy-800" hidden>
-          Instalar app
+      <div class="order-2 ml-auto flex items-center gap-2 md:order-none">
+        <button type="button" id="boton-instalar" class="btn border-2 border-yellow-400 px-3 text-yellow-300 hover:bg-navy-800" hidden>
+          <span aria-hidden="true">⤓</span><span class="sr-only sm:not-sr-only">Instalar app</span>
         </button>
-        <button type="button" id="boton-carrito" class="btn-acento" aria-haspopup="dialog" aria-controls="dialogo-carrito">
+        <button type="button" id="boton-carrito" class="btn-acento px-3 sm:px-4" aria-haspopup="dialog" aria-controls="dialogo-carrito">
           <span aria-hidden="true">🛒</span>
           <span class="sr-only sm:not-sr-only">Carrito</span>
           <span id="contador-carrito" class="chip bg-navy-900 text-white">0</span>
@@ -53,7 +54,7 @@
 
     <!-- Estado de conexión: role="status" lo anuncia sin robar el foco (WCAG 4.1.3). -->
     <div id="estado-red" role="status" class="border-t border-navy-700">
-      <p id="estado-red-texto" class="mx-auto max-w-7xl px-4 py-1.5 text-sm text-slate-200">Comprobando conexión…</p>
+      <p id="estado-red-texto" class="mx-auto max-w-7xl px-4 py-1 text-xs text-slate-200 sm:py-1.5 sm:text-sm">Comprobando conexión…</p>
     </div>
   </header>
 

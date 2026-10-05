@@ -152,7 +152,7 @@ function pintarRelacionados() {
   const relacionados = repo.relacionados(producto, catalogo.productos);
   $("#relacionados").hidden = relacionados.length === 0;
   view.renderProductos($("#lista-relacionados"), relacionados, {
-    columnas: "sm:grid-cols-2 lg:grid-cols-4",
+    columnas: "lg:grid-cols-4",
     unidadesEnCarrito,
     alAgregar: (id) => {
       agregarAlCarrito(id);
