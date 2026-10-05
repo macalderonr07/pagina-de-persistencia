@@ -67,6 +67,22 @@ npm run build:css    # regenera assets/styles.css
 > que ya visitaron el sitio seguirán usando la copia en caché. La página muestra el aviso
 > "Actualizar ahora" cuando detecta una versión nueva.
 
+## Verificación automática (GitHub Actions)
+
+Cada push a `main` de **pagina-de-persistencia** corre el workflow
+`.github/workflows/verificar-y-publicar.yml`: **primero verifica y solo si todo pasa publica** en
+GitHub Pages. Si una verificación falla, el job "Publicar" no corre y el sitio en línea queda como estaba.
+En un pull request solo verifica.
+
+| Paso | Qué comprueba | Comando |
+|---|---|---|
+| Estática | Sintaxis de todo el JS; `productos.json` (campos, ids únicos, ≥ 3 fotos por kit con `alt`, crédito CC y archivo existente); que el SW precargue archivos que existen (y todos los módulos JS); manifest e íconos; que cada `src`/`href` local exista; que `assets/styles.css` esté compilado con la última versión | `npm run verificar:estatico` |
+| HTML | Validación con `html-validate` (reglas recomendadas; excepciones documentadas en `.htmlvalidate.mjs`) | `npm run verificar:html` |
+| Navegador | Chromium real con Playwright: las 3 páginas en escritorio, iPhone SE (320 px), Pixel 5 e iPad Mini, **sin errores de JS, sin scroll horizontal y con 0 violaciones de axe (WCAG 2.2 AA)**; carrusel automático y su pausa, filtros por URL, búsqueda, galería, carrito, ficha inexistente (sin inyección del id) y **modo sin conexión** | `npm run verificar:e2e` |
+
+Todo junto en local: `npm ci && npx playwright install chromium && npm run verificar`.
+`npm run preparar-sitio` arma `_site/` con solo lo publicable (sin scripts ni configuración).
+
 ## Estructura
 
 ```
@@ -76,6 +92,9 @@ producto.html           ficha de producto + relacionados
                         (las tres comparten header, footer y el <dialog> del carrito)
 manifest.webmanifest    instalación como app
 sw.js                   Service Worker (en la raíz para que su scope cubra todo el sitio)
+.github/workflows/      verificar-y-publicar.yml (CI/CD de GitHub Actions)
+scripts/                verificar-estatico.mjs, verificar-e2e.mjs, preparar-sitio.mjs
+.htmlvalidate.mjs       configuración del validador de HTML
 assets/
   tailwind.css          fuente de estilos (Tailwind + capa base/componentes)
   styles.css            CSS compilado (NO editar a mano)

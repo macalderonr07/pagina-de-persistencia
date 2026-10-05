@@ -84,6 +84,7 @@
     </div>
 
     <article id="ficha" aria-labelledby="ficha-nombre" class="mx-auto max-w-7xl px-4 py-8" hidden>
+      <!-- [html-validate-disable-block element-required-attributes, empty-heading -- la ficha está oculta hasta que producto.js pone foto y nombre del kit pedido en la URL] -->
       <div class="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
         <!-- Galería: foto grande + anterior/siguiente + miniaturas.
              self-start: en el grid la galería no se estira al alto de la columna de texto. -->
@@ -201,6 +202,7 @@
        se puede hacer clic en cualquier parte, pero para el teclado y el lector de
        pantalla hay UN solo enlace por tarjeta. El botón queda por encima (z-10). -->
   <template id="tpl-producto">
+    <!-- [html-validate-disable-block element-required-attributes, empty-heading, text-content -- plantilla: view.js pone src, nombre y texto del botón al clonarla] -->
     <li class="producto">
       <!-- Mobile-first: en celular la tarjeta es compacta (2 por fila); desde sm:
            aparecen descripción, línea y dificultad. -->

@@ -1,0 +1,79 @@
+# Verifica Hangar Kits y, SOLO si todo pasa, lo publica en GitHub Pages.
+#
+#   verificar  -> JS, catálogo, Service Worker, manifest, enlaces, CSS al día,
+#                 HTML válido y pruebas en Chromium (escritorio + celulares, axe
+#                 WCAG 2.2 AA, carrusel, carrito, galería, modo sin conexión).
+#   publicar   -> sube _site/ a Pages. Si "verificar" falla, este job no corre y
+#                 el sitio publicado queda como estaba.
+#
+# En un pull request solo se verifica (no se publica).
+
+name: Verificar y publicar
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Nunca dos publicaciones a la vez; la que está corriendo termina.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    name: Verificar el sitio
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Verificación estática (JS, catálogo, SW, manifest, enlaces, CSS al día)
+        run: npm run verificar:estatico
+
+      - name: Validación de HTML
+        run: npm run verificar:html
+
+      - name: Instalar Chromium para las pruebas
+        run: npx playwright install --with-deps chromium
+
+      - name: Pruebas en navegador (escritorio, celulares, accesibilidad, offline)
+        run: npm run verificar:e2e
+
+      - name: Preparar la carpeta publicable
+        if: github.event_name != 'pull_request'
+        run: npm run preparar-sitio
+
+      - name: Subir el sitio verificado
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  publicar:
+    name: Publicar en GitHub Pages
+    needs: verificar
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - name: Desplegar
+        id: despliegue
+        uses: actions/deploy-pages@v4

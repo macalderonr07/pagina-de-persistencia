@@ -96,8 +96,13 @@
             <form id="form-filtros" role="search" aria-label="Filtrar catálogo" class="space-y-6">
               <div>
                 <label for="filtro-texto" class="etiqueta">Buscar</label>
-                <input type="search" id="filtro-texto" name="texto" class="campo" placeholder="Ej.: barbatos, hguc, 1/35"
-                       autocomplete="off" aria-describedby="ayuda-texto">
+                <!-- Botón de envío explícito (WCAG técnica H32): además de Enter, la búsqueda
+                     se puede lanzar con un control visible. -->
+                <div class="mt-1 flex gap-2">
+                  <input type="search" id="filtro-texto" name="texto" class="campo mt-0" placeholder="Ej.: barbatos, hguc, 1/35"
+                         autocomplete="off" aria-describedby="ayuda-texto">
+                  <button type="submit" class="btn-primario shrink-0 px-3">Buscar</button>
+                </div>
                 <p id="ayuda-texto" class="ayuda">Busca en nombre, marca, línea, franquicia, serie y escala.</p>
               </div>
 
@@ -228,6 +233,7 @@
        se puede hacer clic en cualquier parte, pero para el teclado y el lector de
        pantalla hay UN solo enlace por tarjeta. El botón queda por encima (z-10). -->
   <template id="tpl-producto">
+    <!-- [html-validate-disable-block element-required-attributes, empty-heading, text-content -- plantilla: view.js pone src, nombre y texto del botón al clonarla] -->
     <li class="producto">
       <!-- Mobile-first: en celular la tarjeta es compacta (2 por fila); desde sm:
            aparecen descripción, línea y dificultad. -->
