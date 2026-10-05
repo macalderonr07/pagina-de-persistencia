@@ -84,7 +84,8 @@
 
     <article id="ficha" aria-labelledby="ficha-nombre" class="mx-auto max-w-7xl px-4 py-8" hidden>
       <div class="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-        <figure class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <!-- self-start: en el grid la figura no se estira al alto de la columna de texto. -->
+        <figure class="self-start overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <img id="ficha-img" width="800" height="600" class="aspect-[4/3] w-full object-cover" alt="" fetchpriority="high">
           <figcaption id="ficha-credito" class="px-4 py-2 text-sm text-slate-700"></figcaption>
         </figure>

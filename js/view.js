@@ -159,9 +159,16 @@ export function renderProductos(lista, productos, { vista = "cuadricula", unidad
     ...productos.map((p) => {
       const nodo = plantilla.content.cloneNode(true);
       const articulo = $("[data-contenedor]", nodo);
-      // En móvil la tarjeta sigue apilada (flex-col); desde sm pasa a grid de 2 columnas.
-      if (enLista) articulo.classList.add("sm:grid", "sm:grid-cols-[14rem_minmax(0,1fr)]");
       const img = $("[data-img]", nodo);
+      // En móvil la tarjeta sigue apilada (flex-col); desde sm pasa a grid de 2 columnas.
+      // En esa vista la celda de la foto se estira al alto del texto: la figura pasa a
+      // columna flex y la imagen ocupa todo el alto libre (sin 4:3 fijo) con
+      // object-cover, para que no quede un hueco gris bajo la foto.
+      if (enLista) {
+        articulo.classList.add("sm:grid", "sm:grid-cols-[14rem_minmax(0,1fr)]");
+        $("[data-figura]", nodo).classList.add("sm:flex", "sm:flex-col");
+        img.classList.add("sm:aspect-auto", "sm:min-h-0", "sm:flex-1");
+      }
       img.src = p.imagen;
       img.alt = p.alt ?? `Kit ${p.nombre}`;
       $("[data-escala]", nodo).textContent = `Escala ${p.escala}`;

@@ -177,6 +177,10 @@ async function registrarServiceWorker() {
     console.warn("[comun] Este navegador no soporta Service Workers: no habrá modo offline.");
     return;
   }
+  // En la primera visita no hay SW controlando la página; cuando el nuevo hace
+  // clients.claim() también se dispara "controllerchange", y recargar ahí sería
+  // inútil (y molesto). Solo se recarga si se REEMPLAZA un SW anterior.
+  const habiaControlador = Boolean(navigator.serviceWorker.controller);
   try {
     const registro = await navigator.serviceWorker.register("./sw.js", { scope: "./" });
     const avisar = (worker) => {
@@ -193,7 +197,7 @@ async function registrarServiceWorker() {
     });
     let recargando = false;
     navigator.serviceWorker.addEventListener("controllerchange", () => {
-      if (recargando) return;
+      if (recargando || !habiaControlador) return;
       recargando = true;
       location.reload();
     });
